@@ -1,0 +1,8 @@
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ExternalResources\obj\Debug\netcoreapp2.1\GoferEx.ExternalResources.csproj.CoreCompileInputs.cache
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ExternalResources\obj\Debug\netcoreapp2.1\GoferEx.ExternalResources.AssemblyInfoInputs.cache
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ExternalResources\obj\Debug\netcoreapp2.1\GoferEx.ExternalResources.AssemblyInfo.cs
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ExternalResources\bin\Debug\netcoreapp2.1\GoferEx.ExternalResources.deps.json
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ExternalResources\bin\Debug\netcoreapp2.1\GoferEx.ExternalResources.dll
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ExternalResources\bin\Debug\netcoreapp2.1\GoferEx.ExternalResources.pdb
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ExternalResources\obj\Debug\netcoreapp2.1\GoferEx.ExternalResources.dll
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ExternalResources\obj\Debug\netcoreapp2.1\GoferEx.ExternalResources.pdb
