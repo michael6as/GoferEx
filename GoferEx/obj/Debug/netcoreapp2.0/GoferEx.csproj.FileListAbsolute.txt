@@ -1,0 +1,11 @@
+C:\Users\Michael\source\repos\GoferEx\GoferEx\bin\Debug\netcoreapp2.0\GoferEx.deps.json
+C:\Users\Michael\source\repos\GoferEx\GoferEx\bin\Debug\netcoreapp2.0\GoferEx.runtimeconfig.json
+C:\Users\Michael\source\repos\GoferEx\GoferEx\bin\Debug\netcoreapp2.0\GoferEx.runtimeconfig.dev.json
+C:\Users\Michael\source\repos\GoferEx\GoferEx\bin\Debug\netcoreapp2.0\GoferEx.dll
+C:\Users\Michael\source\repos\GoferEx\GoferEx\bin\Debug\netcoreapp2.0\GoferEx.pdb
+C:\Users\Michael\source\repos\GoferEx\GoferEx\obj\Debug\netcoreapp2.0\GoferEx.csprojAssemblyReference.cache
+C:\Users\Michael\source\repos\GoferEx\GoferEx\obj\Debug\netcoreapp2.0\GoferEx.csproj.CoreCompileInputs.cache
+C:\Users\Michael\source\repos\GoferEx\GoferEx\obj\Debug\netcoreapp2.0\GoferEx.AssemblyInfoInputs.cache
+C:\Users\Michael\source\repos\GoferEx\GoferEx\obj\Debug\netcoreapp2.0\GoferEx.AssemblyInfo.cs
+C:\Users\Michael\source\repos\GoferEx\GoferEx\obj\Debug\netcoreapp2.0\GoferEx.dll
+C:\Users\Michael\source\repos\GoferEx\GoferEx\obj\Debug\netcoreapp2.0\GoferEx.pdb

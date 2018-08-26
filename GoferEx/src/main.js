@@ -3,11 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import VeeValidate from 'vee-validate'
+import GSignInButton from 'vue-google-signin-button'
 
 import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(VeeValidate)
+Vue.use(GSignInButton)
 
 /* eslint-disable no-new */
 new Vue({

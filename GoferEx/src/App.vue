@@ -3,6 +3,7 @@
     <toasts/>
     <apps-panel/>
     <users-list/>
+    <sync-prompt/>
     <user-form/>
     <right-panel/>
   </div>
@@ -12,6 +13,7 @@
 import Toasts from './components/toasts'
 import AppsPanel from './components/apps-panel'
 import UsersList from './components/users-list'
+import SyncPrompt from './components/sync-prompt'
 import UserForm from './components/user-form'
 import RightPanel from './components/right-panel'
 
@@ -21,6 +23,7 @@ export default {
     Toasts,
     AppsPanel,
     UsersList,
+    SyncPrompt,
     UserForm,
     RightPanel
   }
