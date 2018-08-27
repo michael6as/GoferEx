@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "4144311b4ac18ff7aeae48d97a213840d154e7f6"
+    "signature": "fd665ff93da97e0a25f3b667821f46278b35b42c"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,7 +10,11 @@
         "dependencies": {
           "Google.Apis.Auth.Mvc": "1.35.1",
           "Google.Apis.PeopleService.v1": "1.35.1.1328",
-          "Microsoft.AspNet.Mvc": "5.2.6"
+          "Google.GData.Client": "2.2.0",
+          "Google.GData.Contacts": "2.2.0",
+          "Google.Protobuf": "3.6.1",
+          "Microsoft.AspNet.Mvc": "5.2.6",
+          "Microsoft.Owin.Security.OAuth": "4.0.0"
         },
         "runtime": {
           "GoferEx.ExternalResources.dll": {}
@@ -72,6 +76,50 @@
           "lib/netstandard2.0/Google.Apis.PeopleService.v1.dll": {
             "assemblyVersion": "1.35.1.1328",
             "fileVersion": "1.35.1.1328"
+          }
+        }
+      },
+      "Google.GData.Client/2.2.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.2"
+        },
+        "runtime": {
+          "lib/Google.GData.Client.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "Google.GData.Contacts/2.2.0": {
+        "dependencies": {
+          "Google.GData.Client": "2.2.0",
+          "Google.GData.Extensions": "2.2.0",
+          "Newtonsoft.Json": "10.0.2"
+        },
+        "runtime": {
+          "lib/Google.GData.Contacts.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "Google.GData.Extensions/2.2.0": {
+        "dependencies": {
+          "Google.GData.Client": "2.2.0",
+          "Newtonsoft.Json": "10.0.2"
+        },
+        "runtime": {
+          "lib/Google.GData.Extensions.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "Google.Protobuf/3.6.1": {
+        "runtime": {
+          "lib/netstandard1.0/Google.Protobuf.dll": {
+            "assemblyVersion": "3.6.1.0",
+            "fileVersion": "3.6.1.0"
           }
         }
       },
@@ -139,6 +187,43 @@
           "System.Threading": "4.3.0"
         }
       },
+      "Microsoft.Owin/4.0.0": {
+        "dependencies": {
+          "Owin": "1.0.0"
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Owin.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.4677.103"
+          }
+        }
+      },
+      "Microsoft.Owin.Security/4.0.0": {
+        "dependencies": {
+          "Microsoft.Owin": "4.0.0",
+          "Owin": "1.0.0"
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Owin.Security.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.4677.103"
+          }
+        }
+      },
+      "Microsoft.Owin.Security.OAuth/4.0.0": {
+        "dependencies": {
+          "Microsoft.Owin": "4.0.0",
+          "Microsoft.Owin.Security": "4.0.0",
+          "Newtonsoft.Json": "10.0.2",
+          "Owin": "1.0.0"
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Owin.Security.OAuth.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.4677.103"
+          }
+        }
+      },
       "Microsoft.Web.Infrastructure/1.0.0": {
         "runtime": {
           "lib/net40/Microsoft.Web.Infrastructure.dll": {
@@ -159,6 +244,14 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {
             "assemblyVersion": "10.0.0.0",
             "fileVersion": "10.0.2.20802"
+          }
+        }
+      },
+      "Owin/1.0.0": {
+        "runtime": {
+          "lib/net40/Owin.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -526,6 +619,34 @@
       "path": "google.apis.peopleservice.v1/1.35.1.1328",
       "hashPath": "google.apis.peopleservice.v1.1.35.1.1328.nupkg.sha512"
     },
+    "Google.GData.Client/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fEzWX+zWCJLj2pHcaY22hz4bbhCYzk01OodW2lqovh8jA2KsMaZ+SvZJqjl2sZo83us8DAFYlnopIR6qfkBbrQ==",
+      "path": "google.gdata.client/2.2.0",
+      "hashPath": "google.gdata.client.2.2.0.nupkg.sha512"
+    },
+    "Google.GData.Contacts/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SD5c0m2aavZP2MS5a7rbCgmsjVCFUAV6QP69tC4+pr6ynhB7kMoWPcHF+efbnnD2U0X88ll8+2YtdsEaFuY9Vg==",
+      "path": "google.gdata.contacts/2.2.0",
+      "hashPath": "google.gdata.contacts.2.2.0.nupkg.sha512"
+    },
+    "Google.GData.Extensions/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Pvei3H1fhthoPbgey6QXqlYD3BCYo+E2h/J1+1PVK1rKMQ/9Ifo3nx5KDT1luyu2H/ZGFxouDaxnqKq2u/J5Qg==",
+      "path": "google.gdata.extensions/2.2.0",
+      "hashPath": "google.gdata.extensions.2.2.0.nupkg.sha512"
+    },
+    "Google.Protobuf/3.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D/h9IZl76jjfM5VlPzG235Zdys9RKXNLYbRGm2fa6Y2UshTqAvYBPIydNOvNTEa24DER/m/zvelHlLO9n1GtNQ==",
+      "path": "google.protobuf/3.6.1",
+      "hashPath": "google.protobuf.3.6.1.nupkg.sha512"
+    },
     "Microsoft.AspNet.Mvc/5.2.6": {
       "type": "package",
       "serviceable": true,
@@ -554,6 +675,27 @@
       "path": "microsoft.csharp/4.3.0",
       "hashPath": "microsoft.csharp.4.3.0.nupkg.sha512"
     },
+    "Microsoft.Owin/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3TNVMkgF+yhesPYwq67ZOcLGtfKEupNNXcqVO4FRNjkQ1v0gBNb3k8CSuJonrCC8EAUp+OeUYrDTQePiyaVzpw==",
+      "path": "microsoft.owin/4.0.0",
+      "hashPath": "microsoft.owin.4.0.0.nupkg.sha512"
+    },
+    "Microsoft.Owin.Security/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-utXSauY1N+toBsOkrSTN/YL3XknbwVTWIQHo4V7IKTcTiay2r9to0yJK4HluqC5KDuUwkjWdVOru/6j/2JjDnw==",
+      "path": "microsoft.owin.security/4.0.0",
+      "hashPath": "microsoft.owin.security.4.0.0.nupkg.sha512"
+    },
+    "Microsoft.Owin.Security.OAuth/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O5QhUEb7LVXCl/4lasHpd48raGqSQdBk5Z8rojFGcDa90n4u15DTPaNtQGje4Oh+bhSdQjvaoW2kKb8B5szDIw==",
+      "path": "microsoft.owin.security.oauth/4.0.0",
+      "hashPath": "microsoft.owin.security.oauth.4.0.0.nupkg.sha512"
+    },
     "Microsoft.Web.Infrastructure/1.0.0": {
       "type": "package",
       "serviceable": true,
@@ -567,6 +709,13 @@
       "sha512": "sha512-iwElSU2IXmwGvytJsezyDML2ZWDkG2JzTYzlU/BNlmzMdlmRvbnwITsGGY74gwVEpDli1UdOLkMT7/3jxWvXzA==",
       "path": "newtonsoft.json/10.0.2",
       "hashPath": "newtonsoft.json.10.0.2.nupkg.sha512"
+    },
+    "Owin/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OseTFniKmyp76mEzOBwIKGBRS5eMoYNkMKaMXOpxx9jv88+b6mh1rSaw43vjBOItNhaLFG3d0a20PfHyibH5sw==",
+      "path": "owin/1.0.0",
+      "hashPath": "owin.1.0.0.nupkg.sha512"
     },
     "System.Collections/4.3.0": {
       "type": "package",

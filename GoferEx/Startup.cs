@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
 
 namespace GoferEx
 {
@@ -26,7 +28,7 @@ namespace GoferEx
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
-    {      
+    {
       services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
@@ -34,11 +36,8 @@ namespace GoferEx
       services.AddAuthentication().AddGoogle(googleOptions =>
       {
         googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-        googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+        googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];        
       });
-
-      //ServiceDescriptor a = new ServiceDescriptor(typeof(IDbProvider),new FileSystemProvider("",""));
-      //services.Add(a);
       services.AddCors(options =>
       {
         options.AddPolicy("AllowAll", p =>
@@ -63,9 +62,9 @@ namespace GoferEx
       {
         app.UseHsts();
       }
-      app.UseCors("AllowAll");
-
+      app.UseCors("AllowAll");      
       app.UseHttpsRedirection();
+      app.UseAuthentication();
       app.UseMvc();
     }
   }

@@ -106,18 +106,14 @@ export default new Vuex.Store({
     removeToast (state, toast) {
       state.toasts = _.remove(state.toasts, x => x.id !== toast.id)
     },
-    syncUser (state, tokens, provider) {
-      state.syncedTokens.push({
-        provider: tokens
-      })
-
-      myApi.get('sync', {
-        params: {
-          token: tokens,
-          provider: provider
-        }
-      })
+    syncUser (state, token) {
+      console.log(token)
+      myApi.post('sync', token)
+        .then(res => {
+          alert(res)
+        }).catch(e => {
+          state.toasts.push('toast')
+        })
     }
-
   }
 })

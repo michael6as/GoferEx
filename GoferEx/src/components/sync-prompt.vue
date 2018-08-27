@@ -19,7 +19,8 @@
          * @type {Object}
          */
         googleSignInParams: {
-          client_id: '535817455358-r5dc38s94p747i89irsu649mkh75dk78.apps.googleusercontent.com'
+          client_id: '535817455358-r5dc38s94p747i89irsu649mkh75dk78.apps.googleusercontent.com',
+          scope: 'https://www.googleapis.com/auth/contacts.readonly'
         }
       }
     },
@@ -28,9 +29,14 @@
       onSignInSuccess(googleUser) {
         // `googleUser` is the GoogleUser object that represents the just-signed-in user.
         // See https://developers.google.com/identity/sign-in/web/reference#users
-        console.log(googleUser.getBasicProfile())
-        console.log(googleUser)
-        this.syncUser(googleUser)
+        let sync_func = this.syncUser
+        //this.syncUser({ token: googleUser.getAuthResponse().id_token, provider: 'Google' })
+         googleUser.grantOfflineAccess({
+          scope: 'profile email'
+         }).then(function (resp) {
+          let auth_code = resp.code;
+          sync_func({ token: auth_code, provider: 'Google' })
+         });        
         const profile = googleUser.getBasicProfile() // etc etc
       },
       onSignInError(error) {

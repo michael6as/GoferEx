@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "cc483794ccf2f94ae74f43a9f99266e0e18c6731"
+    "signature": "ceb8247d6989fbc8d227e44de9d284cad92478ef"
   },
   "compilationOptions": {
     "defines": [
@@ -129,6 +129,65 @@
         },
         "compile": {
           "lib/netstandard2.0/Google.Apis.PeopleService.v1.dll": {}
+        }
+      },
+      "Google.GData.Client/2.2.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/Google.GData.Client.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        },
+        "compile": {
+          "lib/Google.GData.Client.dll": {}
+        }
+      },
+      "Google.GData.Contacts/2.2.0": {
+        "dependencies": {
+          "Google.GData.Client": "2.2.0",
+          "Google.GData.Extensions": "2.2.0",
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/Google.GData.Contacts.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        },
+        "compile": {
+          "lib/Google.GData.Contacts.dll": {}
+        }
+      },
+      "Google.GData.Extensions/2.2.0": {
+        "dependencies": {
+          "Google.GData.Client": "2.2.0",
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/Google.GData.Extensions.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        },
+        "compile": {
+          "lib/Google.GData.Extensions.dll": {}
+        }
+      },
+      "Google.Protobuf/3.6.1": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard1.0/Google.Protobuf.dll": {
+            "assemblyVersion": "3.6.1.0",
+            "fileVersion": "3.6.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.0/Google.Protobuf.dll": {}
         }
       },
       "Microsoft.AspNet.Mvc/5.2.6": {
@@ -388,6 +447,52 @@
       },
       "Microsoft.NETCore.Platforms/2.1.0": {},
       "Microsoft.NETCore.Targets/2.1.0": {},
+      "Microsoft.Owin/4.0.0": {
+        "dependencies": {
+          "Owin": "1.0.0"
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Owin.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.4677.103"
+          }
+        },
+        "compile": {
+          "lib/net451/Microsoft.Owin.dll": {}
+        }
+      },
+      "Microsoft.Owin.Security/4.0.0": {
+        "dependencies": {
+          "Microsoft.Owin": "4.0.0",
+          "Owin": "1.0.0"
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Owin.Security.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.4677.103"
+          }
+        },
+        "compile": {
+          "lib/net451/Microsoft.Owin.Security.dll": {}
+        }
+      },
+      "Microsoft.Owin.Security.OAuth/4.0.0": {
+        "dependencies": {
+          "Microsoft.Owin": "4.0.0",
+          "Microsoft.Owin.Security": "4.0.0",
+          "Newtonsoft.Json": "11.0.2",
+          "Owin": "1.0.0"
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Owin.Security.OAuth.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.4677.103"
+          }
+        },
+        "compile": {
+          "lib/net451/Microsoft.Owin.Security.OAuth.dll": {}
+        }
+      },
       "Microsoft.VisualStudio.Web.CodeGeneration/2.1.3": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "2.1.1",
@@ -536,6 +641,17 @@
         },
         "compile": {
           "lib/netstandard1.6/NuGet.Frameworks.dll": {}
+        }
+      },
+      "Owin/1.0.0": {
+        "runtime": {
+          "lib/net40/Owin.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/net40/Owin.dll": {}
         }
       },
       "System.Composition/1.0.31": {
@@ -691,7 +807,11 @@
         "dependencies": {
           "Google.Apis.Auth.Mvc": "1.35.1",
           "Google.Apis.PeopleService.v1": "1.35.1.1328",
-          "Microsoft.AspNet.Mvc": "5.2.6"
+          "Google.GData.Client": "2.2.0",
+          "Google.GData.Contacts": "2.2.0",
+          "Google.Protobuf": "3.6.1",
+          "Microsoft.AspNet.Mvc": "5.2.6",
+          "Microsoft.Owin.Security.OAuth": "4.0.0"
         },
         "runtime": {
           "GoferEx.ExternalResources.dll": {}
@@ -4251,6 +4371,34 @@
       "path": "google.apis.peopleservice.v1/1.35.1.1328",
       "hashPath": "google.apis.peopleservice.v1.1.35.1.1328.nupkg.sha512"
     },
+    "Google.GData.Client/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fEzWX+zWCJLj2pHcaY22hz4bbhCYzk01OodW2lqovh8jA2KsMaZ+SvZJqjl2sZo83us8DAFYlnopIR6qfkBbrQ==",
+      "path": "google.gdata.client/2.2.0",
+      "hashPath": "google.gdata.client.2.2.0.nupkg.sha512"
+    },
+    "Google.GData.Contacts/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SD5c0m2aavZP2MS5a7rbCgmsjVCFUAV6QP69tC4+pr6ynhB7kMoWPcHF+efbnnD2U0X88ll8+2YtdsEaFuY9Vg==",
+      "path": "google.gdata.contacts/2.2.0",
+      "hashPath": "google.gdata.contacts.2.2.0.nupkg.sha512"
+    },
+    "Google.GData.Extensions/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Pvei3H1fhthoPbgey6QXqlYD3BCYo+E2h/J1+1PVK1rKMQ/9Ifo3nx5KDT1luyu2H/ZGFxouDaxnqKq2u/J5Qg==",
+      "path": "google.gdata.extensions/2.2.0",
+      "hashPath": "google.gdata.extensions.2.2.0.nupkg.sha512"
+    },
+    "Google.Protobuf/3.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D/h9IZl76jjfM5VlPzG235Zdys9RKXNLYbRGm2fa6Y2UshTqAvYBPIydNOvNTEa24DER/m/zvelHlLO9n1GtNQ==",
+      "path": "google.protobuf/3.6.1",
+      "hashPath": "google.protobuf.3.6.1.nupkg.sha512"
+    },
     "Microsoft.AspNet.Mvc/5.2.6": {
       "type": "package",
       "serviceable": true,
@@ -4328,6 +4476,27 @@
       "path": "microsoft.netcore.targets/2.1.0",
       "hashPath": "microsoft.netcore.targets.2.1.0.nupkg.sha512"
     },
+    "Microsoft.Owin/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3TNVMkgF+yhesPYwq67ZOcLGtfKEupNNXcqVO4FRNjkQ1v0gBNb3k8CSuJonrCC8EAUp+OeUYrDTQePiyaVzpw==",
+      "path": "microsoft.owin/4.0.0",
+      "hashPath": "microsoft.owin.4.0.0.nupkg.sha512"
+    },
+    "Microsoft.Owin.Security/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-utXSauY1N+toBsOkrSTN/YL3XknbwVTWIQHo4V7IKTcTiay2r9to0yJK4HluqC5KDuUwkjWdVOru/6j/2JjDnw==",
+      "path": "microsoft.owin.security/4.0.0",
+      "hashPath": "microsoft.owin.security.4.0.0.nupkg.sha512"
+    },
+    "Microsoft.Owin.Security.OAuth/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O5QhUEb7LVXCl/4lasHpd48raGqSQdBk5Z8rojFGcDa90n4u15DTPaNtQGje4Oh+bhSdQjvaoW2kKb8B5szDIw==",
+      "path": "microsoft.owin.security.oauth/4.0.0",
+      "hashPath": "microsoft.owin.security.oauth.4.0.0.nupkg.sha512"
+    },
     "Microsoft.VisualStudio.Web.CodeGeneration/2.1.3": {
       "type": "package",
       "serviceable": true,
@@ -4404,6 +4573,13 @@
       "sha512": "sha512-/VaEPsEgj3p5YPLLxbYc6rB8gYIPf+8wCWOAlAe3l/SP0DXcefZ58uJer1ToBKIpwbPN5LkgTXtvilze5UJoYQ==",
       "path": "nuget.frameworks/4.7.0",
       "hashPath": "nuget.frameworks.4.7.0.nupkg.sha512"
+    },
+    "Owin/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OseTFniKmyp76mEzOBwIKGBRS5eMoYNkMKaMXOpxx9jv88+b6mh1rSaw43vjBOItNhaLFG3d0a20PfHyibH5sw==",
+      "path": "owin/1.0.0",
+      "hashPath": "owin.1.0.0.nupkg.sha512"
     },
     "System.Composition/1.0.31": {
       "type": "package",
