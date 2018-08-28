@@ -3,12 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import VeeValidate from 'vee-validate'
-import GoogleAuth from 'vue-google-auth'
+// import GoogleAuth from 'vue-google-auth'
 
 import store from './store'
 
-Vue.use(GoogleAuth, { client_id: '535817455358-tlgkg5jca5u3kjd3jlhqr4u1ef6udt7f.apps.googleusercontent.com' })
-Vue.googleAuth().load()
+// Vue.use(GoogleAuth, { client_id: '535817455358-tlgkg5jca5u3kjd3jlhqr4u1ef6udt7f.apps.googleusercontent.com' })
+// Vue.googleAuth().load()
 Vue.config.productionTip = false
 Vue.use(VeeValidate)
 

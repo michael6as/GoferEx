@@ -2,7 +2,7 @@ import _ from 'lodash'
 import uuid from 'uuid'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import defaultUsers from './default-users'
+import defaultUsers from './default-users.js'
 import axios from 'axios'
 
 Vue.use(Vuex)
@@ -26,13 +26,23 @@ function updateStorage (users) {
 
 // TODO: Chnage based on line 10
 myApi.get('contact').then(res => {
-  console.log('Update storage func2')
-  localStorage.setItem('users', JSON.stringify(res.data))
+  if (res.data.length > 0) {
+    localStorage.setItem('users', res.data)
+  }
 }).catch(e => {
-  alert(e)
+  alert('Got error while fetching users from server ' + e.message)
 })
 
-var existUsers = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : defaultUsers
+var existUsers = []
+
+var initUsers = function () {
+  if (localStorage.getItem('users') !== null) {
+    existUsers = JSON.parse(localStorage.getItem('users'))
+  } else {
+    existUsers = defaultUsers
+  }
+}
+initUsers()
 
 export default new Vuex.Store({
   state: {
@@ -49,8 +59,11 @@ export default new Vuex.Store({
       myApi.post('contact', user).then(res => {
         state.users = res.data
       }).catch(e => {
-        toast = { id: user.id, message: e.Message, isPositive: false }
+        toast = { id: user.id, message: 'Error while adding new contact ' + e.Message, isPositive: false }
         state.toasts.push(toast)
+        setTimeout(() => {
+          state.toasts = _.remove(state.toasts, x => x.id !== toast.id)
+        }, 3000)
       })
       let users = state.users
 
@@ -59,7 +72,6 @@ export default new Vuex.Store({
       if (idx !== -1) {
         users.splice(idx, 1, user)
         toast = { id: user.id, message: 'User updated', isPositive: true }
-        // { id: uuid(), message: 'User updated', isPositive: true }
       } else {
         users.push(user)
         toast = { id: user.id, message: 'User added', isPositive: true }
@@ -79,14 +91,16 @@ export default new Vuex.Store({
       myApi.delete(reqUrl).then(res => {
         state.users = res.data
       }).catch(e => {
-        console.log(e)
+        let toast = { id: user.id, message: 'Error while deleting user ' + e.message, isPositive: false }
+        state.toasts.push(toast)
+        setTimeout(() => {
+          state.toasts = _.remove(state.toasts, x => x.id !== toast.id)
+        }, 3000)
       })
       state.users = _.remove(state.users, (u) => u.id !== user.id)
-      if (state.currentUser.id === user.id) {
-        state.currentUser = null
-      }
+      state.currentUser = null
 
-      let toast = { id: uuid(), message: 'User removed', isPositive: false }
+      let toast = { id: uuid(), message: 'User removed', isPositive: true }
       state.toasts.push(toast)
       setTimeout(() => {
         state.toasts = _.remove(state.toasts, x => x.id !== toast.id)
@@ -100,7 +114,11 @@ export default new Vuex.Store({
       myApi.get(reqUrl).then(res => {
         state.currentUser = res.data
       }).catch(e => {
-        alert(e)
+        let toast = { id: uuid(), message: 'Error while getting server info for user ' + e.meesage, isPositive: false }
+        state.toasts.push(toast)
+        setTimeout(() => {
+          state.toasts = _.remove(state.toasts, x => x.id !== toast.id)
+        }, 3000)
       })
     },
     removeToast (state, toast) {

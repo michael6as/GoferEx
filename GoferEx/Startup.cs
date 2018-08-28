@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace GoferEx
 {
@@ -31,13 +33,7 @@ namespace GoferEx
     {
       services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
-
-      services.AddAuthentication().AddGoogle(googleOptions =>
-      {
-        googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-        googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];        
-      });
+        .AddDefaultTokenProviders();      
       services.AddCors(options =>
       {
         options.AddPolicy("AllowAll", p =>
@@ -49,6 +45,12 @@ namespace GoferEx
         });
       });
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+      services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddGoogle(googleOptions =>
+      {
+        googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+        googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+        googleOptions.CallbackPath = "/signin-google";
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,8 +65,9 @@ namespace GoferEx
         app.UseHsts();
       }
       app.UseCors("AllowAll");      
-      app.UseHttpsRedirection();
+      app.UseHttpsRedirection();      
       app.UseAuthentication();
+      app.Build();
       app.UseMvc();
     }
   }

@@ -26,18 +26,21 @@
       ...mapMutations(['syncUser']),
       signIn: function () {
         let syncUser = this.syncUser
-        //Vue.googleAuth().directAccess()
-        Vue.googleAuth().signIn(this.onSignInSuccess, this.onSignInError)
+
+        // This lets me get the googleUser object rather than the auth code
+        Vue.googleAuth().directAccess()
+          Vue.googleAuth().signIn(this.onSignInSuccess, this.onSignInError)
       },
       onSignInSuccess: function (googleUser) {
         this.syncUser({ token: googleUser, provider: 'Google' })
-        //googleUser.grantOfflineAccess({ 'redirect_uri': 'http://localhost:1906/signin-google' }).then(function (response) {
-        //  syncUser({ token: response.code, provider: 'Google' })
-        //}, function (error) {
-        //  console.log(error)
-        //})      
-        this.toggleLoading()
-        this.resetResponse()
+        // This line is redirecting me to this url with the auth code and other things from Google
+        googleUser.grantOfflineAccess({ 'redirect_uri': 'http://localhost:1906/signin-google' }).then(function (response) {
+          syncUser({ token: response.code, provider: 'Google' })
+          //this.toggleLoading()
+          //this.resetResponse()
+        }, function (error) {
+          console.log(error)
+        })      
         // this.syncUser({ token: authorizationCode, provider: 'Google' })
       },
       onSignInError: function (error) {

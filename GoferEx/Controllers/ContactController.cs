@@ -22,13 +22,13 @@ namespace GoferEx.Controllers
     [HttpGet()]
     public List<Contact> Get()
     {
-      return _dbProvider.GetContacts();
+      return _dbProvider.GetContacts().Result.ToList();
     }
 
     [HttpGet("{id}")]
     public Contact Get(string id)
     {
-      return _dbProvider.GetContact(Guid.Parse(id));
+      return _dbProvider.GetContact(Guid.Parse(id)).Result;
     }
 
     [HttpPost()]
@@ -40,15 +40,19 @@ namespace GoferEx.Controllers
         _dbProvider.UpdateContacts(contactList);
       }
       _dbProvider.AddContacts(contactList);
-      return _dbProvider.GetContacts();
+      return _dbProvider.GetContacts().Result.ToList();
     }
 
     [HttpDelete("{id}")]
     public List<Contact> Delete(string id)
     {
-      if (_dbProvider.RemoveContact(Guid.Parse(id)))
+      if (_dbProvider.RemoveContact(Guid.Parse(id)).Result)
       {
-        return _dbProvider.GetContacts();
+        var contacts = _dbProvider.GetContacts().Result;
+        if (contacts != null)
+        {
+          return _dbProvider.GetContacts().Result.ToList();
+        }        
       }
 
       return null;
