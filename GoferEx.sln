@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoferEx.Storage", "GoferEx.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoferEx.Core", "GoferEx.Core\GoferEx.Core.csproj", "{81BB58DB-69F7-4711-AFD3-C582F85B014D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoferEx.ExternalResources", "GoferEx.ExternalResources\GoferEx.ExternalResources.csproj", "{E4A00B08-DB2D-4318-9516-6D1BBFC6CB68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoferEx.ExternalResources", "GoferEx.ExternalResources\GoferEx.ExternalResources.csproj", "{E4A00B08-DB2D-4318-9516-6D1BBFC6CB68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

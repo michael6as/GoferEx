@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "429e313d427d55b81600c2b88988961c43d26c58"
+    "signature": "7143785f357a95205cbb5d22c1e621e0791c92c6"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,13 +9,10 @@
       "GoferEx.ExternalResources/1.0.0": {
         "dependencies": {
           "GoferEx.Core": "1.0.0",
-          "Google.Apis.Auth.Mvc": "1.35.1",
           "Google.Apis.PeopleService.v1": "1.35.1.1328",
           "Google.GData.Client": "2.2.0",
           "Google.GData.Contacts": "2.2.0",
-          "Google.Protobuf": "3.6.1",
-          "Microsoft.AspNet.Mvc": "5.2.6",
-          "Microsoft.Owin.Security.OAuth": "4.0.0"
+          "Google.Protobuf": "3.6.1"
         },
         "runtime": {
           "GoferEx.ExternalResources.dll": {}
@@ -44,14 +41,6 @@
             "fileVersion": "1.35.1.0"
           },
           "lib/netstandard2.0/Google.Apis.Auth.dll": {
-            "assemblyVersion": "1.35.1.0",
-            "fileVersion": "1.35.1.0"
-          }
-        }
-      },
-      "Google.Apis.Auth.Mvc/1.35.1": {
-        "runtime": {
-          "lib/net45/Google.Apis.Auth.Mvc.dll": {
             "assemblyVersion": "1.35.1.0",
             "fileVersion": "1.35.1.0"
           }
@@ -124,108 +113,11 @@
           }
         }
       },
-      "Microsoft.AspNet.Mvc/5.2.6": {
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.2.6",
-          "Microsoft.AspNet.WebPages": "3.2.6"
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {
-            "assemblyVersion": "5.2.6.0",
-            "fileVersion": "5.2.60510.0"
-          }
-        }
-      },
-      "Microsoft.AspNet.Razor/3.2.6": {
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          }
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.2.6": {
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.2.6",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          },
-          "lib/net45/System.Web.WebPages.Deployment.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          },
-          "lib/net45/System.Web.WebPages.Razor.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          },
-          "lib/net45/System.Web.WebPages.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.60510.0"
-          }
-        }
-      },
-      "Microsoft.Owin/4.0.0": {
-        "dependencies": {
-          "Owin": "1.0.0"
-        },
-        "runtime": {
-          "lib/net451/Microsoft.Owin.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.4677.103"
-          }
-        }
-      },
-      "Microsoft.Owin.Security/4.0.0": {
-        "dependencies": {
-          "Microsoft.Owin": "4.0.0",
-          "Owin": "1.0.0"
-        },
-        "runtime": {
-          "lib/net451/Microsoft.Owin.Security.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.4677.103"
-          }
-        }
-      },
-      "Microsoft.Owin.Security.OAuth/4.0.0": {
-        "dependencies": {
-          "Microsoft.Owin": "4.0.0",
-          "Microsoft.Owin.Security": "4.0.0",
-          "Newtonsoft.Json": "11.0.2",
-          "Owin": "1.0.0"
-        },
-        "runtime": {
-          "lib/net451/Microsoft.Owin.Security.OAuth.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.0.4677.103"
-          }
-        }
-      },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.20105.407"
-          }
-        }
-      },
       "Newtonsoft.Json/11.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
             "assemblyVersion": "11.0.0.0",
             "fileVersion": "11.0.2.21924"
-          }
-        }
-      },
-      "Owin/1.0.0": {
-        "runtime": {
-          "lib/net40/Owin.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -258,13 +150,6 @@
       "sha512": "sha512-GklaB+R3yiC13T/duEW10uqvugSr1zgPcn1P3O4hOPcMoS4Z/NvGYns2IoEywVKXuFg4kGH/VUCZ7xSUdcAV6g==",
       "path": "google.apis.auth/1.35.1",
       "hashPath": "google.apis.auth.1.35.1.nupkg.sha512"
-    },
-    "Google.Apis.Auth.Mvc/1.35.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-gIu/glwLjsvdJYQda6dAkYehHQyCI1GIt8D2oojOkj9liSzZh2uqC3kYqauubT0qSJALVQnVruhlgTfXusVVjg==",
-      "path": "google.apis.auth.mvc/1.35.1",
-      "hashPath": "google.apis.auth.mvc.1.35.1.nupkg.sha512"
     },
     "Google.Apis.Core/1.35.1": {
       "type": "package",
@@ -308,68 +193,12 @@
       "path": "google.protobuf/3.6.1",
       "hashPath": "google.protobuf.3.6.1.nupkg.sha512"
     },
-    "Microsoft.AspNet.Mvc/5.2.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-kBiyGUUBLE8JyQDTdmsBW0MyKg3VbB6FCrhu2pZiT9uOdS7uqADryIApWnUWmzDj4+4Q3/c/sgBM+Y+kDUFTyg==",
-      "path": "microsoft.aspnet.mvc/5.2.6",
-      "hashPath": "microsoft.aspnet.mvc.5.2.6.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Razor/3.2.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-AmdtrCaQtafgIzjaJjWjntWCE28c9CZnwSOFBC7zqt9OWJ9+uaxDQYSF1CHlyQOgTCzU7U9kux45cEoXXrwGDw==",
-      "path": "microsoft.aspnet.razor/3.2.6",
-      "hashPath": "microsoft.aspnet.razor.3.2.6.nupkg.sha512"
-    },
-    "Microsoft.AspNet.WebPages/3.2.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Cr2MOsKLhxR0aM5LlrTKYPxbDZk8IIdEyxm7qcs8v1hn7VFgk9igvCM4R/sYqy6MN+9v3ry77D7aCsp542t1Dw==",
-      "path": "microsoft.aspnet.webpages/3.2.6",
-      "hashPath": "microsoft.aspnet.webpages.3.2.6.nupkg.sha512"
-    },
-    "Microsoft.Owin/4.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-3TNVMkgF+yhesPYwq67ZOcLGtfKEupNNXcqVO4FRNjkQ1v0gBNb3k8CSuJonrCC8EAUp+OeUYrDTQePiyaVzpw==",
-      "path": "microsoft.owin/4.0.0",
-      "hashPath": "microsoft.owin.4.0.0.nupkg.sha512"
-    },
-    "Microsoft.Owin.Security/4.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-utXSauY1N+toBsOkrSTN/YL3XknbwVTWIQHo4V7IKTcTiay2r9to0yJK4HluqC5KDuUwkjWdVOru/6j/2JjDnw==",
-      "path": "microsoft.owin.security/4.0.0",
-      "hashPath": "microsoft.owin.security.4.0.0.nupkg.sha512"
-    },
-    "Microsoft.Owin.Security.OAuth/4.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-O5QhUEb7LVXCl/4lasHpd48raGqSQdBk5Z8rojFGcDa90n4u15DTPaNtQGje4Oh+bhSdQjvaoW2kKb8B5szDIw==",
-      "path": "microsoft.owin.security.oauth/4.0.0",
-      "hashPath": "microsoft.owin.security.oauth.4.0.0.nupkg.sha512"
-    },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "hashPath": "microsoft.web.infrastructure.1.0.0.nupkg.sha512"
-    },
     "Newtonsoft.Json/11.0.2": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
       "path": "newtonsoft.json/11.0.2",
       "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
-    },
-    "Owin/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-OseTFniKmyp76mEzOBwIKGBRS5eMoYNkMKaMXOpxx9jv88+b6mh1rSaw43vjBOItNhaLFG3d0a20PfHyibH5sw==",
-      "path": "owin/1.0.0",
-      "hashPath": "owin.1.0.0.nupkg.sha512"
     },
     "GoferEx.Core/1.0.0": {
       "type": "project",

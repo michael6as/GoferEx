@@ -1,15 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GoferEx.Storage;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace GoferEx
 {
@@ -17,12 +21,6 @@ namespace GoferEx
   {
     public Startup(IConfiguration configuration)
     {
-      var builder = new ConfigurationBuilder()        
-        .AddJsonFile("appSettings.json",
-          optional: false,
-          reloadOnChange: true)
-        .AddEnvironmentVariables();
-        builder.AddUserSecrets<Startup>();     
       Configuration = configuration;
     }
 
@@ -33,24 +31,27 @@ namespace GoferEx
     {
       services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();      
+        .AddDefaultTokenProviders();
+
+      // Add Google Middleware Authentication - Is it?
+      services.AddAuthentication().AddGoogle(googleOptions =>
+      {
+        googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+        googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+      });
       services.AddCors(options =>
       {
         options.AddPolicy("AllowAll", p =>
         {
           p.AllowAnyOrigin()
-          .AllowAnyHeader()
-          .AllowAnyMethod()
-          .AllowCredentials();
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
         });
       });
+
+      services.AddTransient<IDbProvider, FileSystemProvider>();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-      services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddGoogle(googleOptions =>
-      {
-        googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-        googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-        googleOptions.CallbackPath = "/signin-google";
-      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,15 +60,19 @@ namespace GoferEx
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
+        app.UseDatabaseErrorPage();
       }
       else
       {
+        app.UseExceptionHandler("/Error");
         app.UseHsts();
       }
-      app.UseCors("AllowAll");      
-      app.UseHttpsRedirection();      
-      app.UseAuthentication();
-      app.Build();
+
+      app.UseHttpsRedirection();
+      app.UseStaticFiles();
+      app.UseCookiePolicy();
+      app.UseCors("AllowAll");
+      app.UseAuthentication();      
       app.UseMvc();
     }
   }

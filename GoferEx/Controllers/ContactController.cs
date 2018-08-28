@@ -22,7 +22,12 @@ namespace GoferEx.Controllers
     [HttpGet()]
     public List<Contact> Get()
     {
-      return _dbProvider.GetContacts().Result.ToList();
+      var contacts = _dbProvider.GetContacts().Result;
+      if (contacts != null)
+      {
+        return contacts.ToList();
+      }
+      return null;
     }
 
     [HttpGet("{id}")]
@@ -39,7 +44,10 @@ namespace GoferEx.Controllers
       {
         _dbProvider.UpdateContacts(contactList);
       }
-      _dbProvider.AddContacts(contactList);
+      else
+      {
+        _dbProvider.AddContacts(contactList);
+      }      
       return _dbProvider.GetContacts().Result.ToList();
     }
 
@@ -52,7 +60,7 @@ namespace GoferEx.Controllers
         if (contacts != null)
         {
           return _dbProvider.GetContacts().Result.ToList();
-        }        
+        }
       }
 
       return null;

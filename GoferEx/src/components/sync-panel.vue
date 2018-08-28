@@ -1,67 +1,33 @@
 <template>
-  <div class="container container-table">
-    <!-- Errors -->
-    <div v-if=response class="text-red"><p>{{response}}</p></div>
-
-    <!-- login Button -->
-    <a id="signin-button" v-on:click="signIn">
-      <i class="fa fa-google-plus-official fa-3x"></i>
-      Sign in with Google
-    </a>
-  </div>
+  <div class="sign-btn" @click="signIn">Sign In With Google</div>
 </template>
 <script>
   import Vue from 'vue'
-  import { mapMutations, mapState } from 'vuex'
+  import { mapMutations } from 'vuex'
 
   export default {
-    data(router) {
-      return {
-        section: 'Login',
-        loading: '',
-        response: ''
-      }
-    },
     methods: {
       ...mapMutations(['syncUser']),
       signIn: function () {
-        let syncUser = this.syncUser
-
-        // This lets me get the googleUser object rather than the auth code
-        Vue.googleAuth().directAccess()
-          Vue.googleAuth().signIn(this.onSignInSuccess, this.onSignInError)
-      },
-      onSignInSuccess: function (googleUser) {
-        this.syncUser({ token: googleUser, provider: 'Google' })
-        // This line is redirecting me to this url with the auth code and other things from Google
-        googleUser.grantOfflineAccess({ 'redirect_uri': 'http://localhost:1906/signin-google' }).then(function (response) {
-          syncUser({ token: response.code, provider: 'Google' })
-          //this.toggleLoading()
-          //this.resetResponse()
-        }, function (error) {
-          console.log(error)
-        })      
-        // this.syncUser({ token: authorizationCode, provider: 'Google' })
-      },
-      onSignInError: function (error) {
-        this.response = 'Failed to sign-in'
-        console.log('GOOGLE SERVER - SIGN-IN ERROR', error)
-      },
-      toggleLoading: function () {
-        this.loading = (this.loading === '') ? 'loading' : ''
-      },
-      resetResponse: function () {
-        this.response = ''
+        let loginUrl = 'https://accounts.google.com/o/oauth2/auth?redirect_uri=http://localhost:1906/signin-google&response_type=code&client_id=535817455358-tlgkg5jca5u3kjd3jlhqr4u1ef6udt7f.apps.googleusercontent.com&scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/plus.me+https://www.googleapis.com/auth/plus.profile.language.read+https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/plus.profile.agerange.read+https://www.googleapis.com/auth/contacts.readonly&approval_prompt=force&access_type=offline'
+        window.open(loginUrl)
       }
     }
-
   }
 </script>
 
 <style>
-  /**
-  * ----------------------------------------------------
-  *  Styling? It's time to show your designing skills!
-  * ----------------------------------------------------
-  */
+  .sign-btn {
+    margin-top: 0.5%;
+    width: 130px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: dodgerblue
+  }
 </style>

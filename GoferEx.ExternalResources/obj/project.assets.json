@@ -30,15 +30,6 @@
           "lib/netstandard2.0/Google.Apis.Auth.dll": {}
         }
       },
-      "Google.Apis.Auth.Mvc/1.35.1": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Google.Apis.Auth.Mvc.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Google.Apis.Auth.Mvc.dll": {}
-        }
-      },
       "Google.Apis.Core/1.35.1": {
         "type": "package",
         "dependencies": {
@@ -113,47 +104,6 @@
         },
         "runtime": {
           "lib/netstandard1.0/Google.Protobuf.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Mvc/5.2.6": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.6, 3.3.0)",
-          "Microsoft.AspNet.WebPages": "[3.2.6, 3.3.0)"
-        },
-        "compile": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Razor/3.2.6": {
-        "type": "package",
-        "compile": {
-          "lib/net45/System.Web.Razor.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {}
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.2.6": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.6, 3.3.0)",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
         }
       },
       "Microsoft.NETCore.App/2.1.0": {
@@ -347,55 +297,6 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.Owin/4.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Owin": "1.0.0"
-        },
-        "compile": {
-          "lib/net451/Microsoft.Owin.dll": {}
-        },
-        "runtime": {
-          "lib/net451/Microsoft.Owin.dll": {}
-        }
-      },
-      "Microsoft.Owin.Security/4.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Owin": "4.0.0",
-          "Owin": "1.0.0"
-        },
-        "compile": {
-          "lib/net451/Microsoft.Owin.Security.dll": {}
-        },
-        "runtime": {
-          "lib/net451/Microsoft.Owin.Security.dll": {}
-        }
-      },
-      "Microsoft.Owin.Security.OAuth/4.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Owin": "4.0.0",
-          "Microsoft.Owin.Security": "4.0.0",
-          "Newtonsoft.Json": "9.0.1",
-          "Owin": "1.0.0"
-        },
-        "compile": {
-          "lib/net451/Microsoft.Owin.Security.OAuth.dll": {}
-        },
-        "runtime": {
-          "lib/net451/Microsoft.Owin.Security.OAuth.dll": {}
-        }
-      },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        }
-      },
       "NETStandard.Library/2.0.3": {
         "type": "package",
         "dependencies": {
@@ -418,15 +319,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
-        }
-      },
-      "Owin/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Owin.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Owin.dll": {}
         }
       },
       "GoferEx.Core/1.0.0": {
@@ -483,18 +375,6 @@
         "lib/netstandard2.0/Google.Apis.Auth.dll",
         "lib/netstandard2.0/Google.Apis.Auth.pdb",
         "lib/netstandard2.0/Google.Apis.Auth.xml"
-      ]
-    },
-    "Google.Apis.Auth.Mvc/1.35.1": {
-      "sha512": "gIu/glwLjsvdJYQda6dAkYehHQyCI1GIt8D2oojOkj9liSzZh2uqC3kYqauubT0qSJALVQnVruhlgTfXusVVjg==",
-      "type": "package",
-      "path": "google.apis.auth.mvc/1.35.1",
-      "files": [
-        "google.apis.auth.mvc.1.35.1.nupkg.sha512",
-        "google.apis.auth.mvc.nuspec",
-        "lib/net45/Google.Apis.Auth.Mvc.dll",
-        "lib/net45/Google.Apis.Auth.Mvc.pdb",
-        "lib/net45/Google.Apis.Auth.Mvc.xml"
       ]
     },
     "Google.Apis.Core/1.35.1": {
@@ -582,52 +462,6 @@
         "lib/net45/Google.Protobuf.xml",
         "lib/netstandard1.0/Google.Protobuf.dll",
         "lib/netstandard1.0/Google.Protobuf.xml"
-      ]
-    },
-    "Microsoft.AspNet.Mvc/5.2.6": {
-      "sha512": "kBiyGUUBLE8JyQDTdmsBW0MyKg3VbB6FCrhu2pZiT9uOdS7uqADryIApWnUWmzDj4+4Q3/c/sgBM+Y+kDUFTyg==",
-      "type": "package",
-      "path": "microsoft.aspnet.mvc/5.2.6",
-      "files": [
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Mvc.dll",
-        "lib/net45/System.Web.Mvc.xml",
-        "microsoft.aspnet.mvc.5.2.6.nupkg.sha512",
-        "microsoft.aspnet.mvc.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.Razor/3.2.6": {
-      "sha512": "AmdtrCaQtafgIzjaJjWjntWCE28c9CZnwSOFBC7zqt9OWJ9+uaxDQYSF1CHlyQOgTCzU7U9kux45cEoXXrwGDw==",
-      "type": "package",
-      "path": "microsoft.aspnet.razor/3.2.6",
-      "files": [
-        ".signature.p7s",
-        "lib/net45/System.Web.Razor.dll",
-        "lib/net45/System.Web.Razor.xml",
-        "microsoft.aspnet.razor.3.2.6.nupkg.sha512",
-        "microsoft.aspnet.razor.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebPages/3.2.6": {
-      "sha512": "Cr2MOsKLhxR0aM5LlrTKYPxbDZk8IIdEyxm7qcs8v1hn7VFgk9igvCM4R/sYqy6MN+9v3ry77D7aCsp542t1Dw==",
-      "type": "package",
-      "path": "microsoft.aspnet.webpages/3.2.6",
-      "files": [
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Helpers.dll",
-        "lib/net45/System.Web.Helpers.xml",
-        "lib/net45/System.Web.WebPages.Deployment.dll",
-        "lib/net45/System.Web.WebPages.Deployment.xml",
-        "lib/net45/System.Web.WebPages.Razor.dll",
-        "lib/net45/System.Web.WebPages.Razor.xml",
-        "lib/net45/System.Web.WebPages.dll",
-        "lib/net45/System.Web.WebPages.xml",
-        "microsoft.aspnet.webpages.3.2.6.nupkg.sha512",
-        "microsoft.aspnet.webpages.nuspec"
       ]
     },
     "Microsoft.NETCore.App/2.1.0": {
@@ -966,49 +800,6 @@
         "version.txt"
       ]
     },
-    "Microsoft.Owin/4.0.0": {
-      "sha512": "3TNVMkgF+yhesPYwq67ZOcLGtfKEupNNXcqVO4FRNjkQ1v0gBNb3k8CSuJonrCC8EAUp+OeUYrDTQePiyaVzpw==",
-      "type": "package",
-      "path": "microsoft.owin/4.0.0",
-      "files": [
-        "lib/net451/Microsoft.Owin.XML",
-        "lib/net451/Microsoft.Owin.dll",
-        "microsoft.owin.4.0.0.nupkg.sha512",
-        "microsoft.owin.nuspec"
-      ]
-    },
-    "Microsoft.Owin.Security/4.0.0": {
-      "sha512": "utXSauY1N+toBsOkrSTN/YL3XknbwVTWIQHo4V7IKTcTiay2r9to0yJK4HluqC5KDuUwkjWdVOru/6j/2JjDnw==",
-      "type": "package",
-      "path": "microsoft.owin.security/4.0.0",
-      "files": [
-        "lib/net451/Microsoft.Owin.Security.XML",
-        "lib/net451/Microsoft.Owin.Security.dll",
-        "microsoft.owin.security.4.0.0.nupkg.sha512",
-        "microsoft.owin.security.nuspec"
-      ]
-    },
-    "Microsoft.Owin.Security.OAuth/4.0.0": {
-      "sha512": "O5QhUEb7LVXCl/4lasHpd48raGqSQdBk5Z8rojFGcDa90n4u15DTPaNtQGje4Oh+bhSdQjvaoW2kKb8B5szDIw==",
-      "type": "package",
-      "path": "microsoft.owin.security.oauth/4.0.0",
-      "files": [
-        "lib/net451/Microsoft.Owin.Security.OAuth.XML",
-        "lib/net451/Microsoft.Owin.Security.OAuth.dll",
-        "microsoft.owin.security.oauth.4.0.0.nupkg.sha512",
-        "microsoft.owin.security.oauth.nuspec"
-      ]
-    },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "sha512": "FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "type": "package",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "files": [
-        "lib/net40/Microsoft.Web.Infrastructure.dll",
-        "microsoft.web.infrastructure.1.0.0.nupkg.sha512",
-        "microsoft.web.infrastructure.nuspec"
-      ]
-    },
     "NETStandard.Library/2.0.3": {
       "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "type": "package",
@@ -1164,16 +955,6 @@
         "newtonsoft.json.nuspec"
       ]
     },
-    "Owin/1.0.0": {
-      "sha512": "OseTFniKmyp76mEzOBwIKGBRS5eMoYNkMKaMXOpxx9jv88+b6mh1rSaw43vjBOItNhaLFG3d0a20PfHyibH5sw==",
-      "type": "package",
-      "path": "owin/1.0.0",
-      "files": [
-        "lib/net40/Owin.dll",
-        "owin.1.0.0.nupkg.sha512",
-        "owin.nuspec"
-      ]
-    },
     "GoferEx.Core/1.0.0": {
       "type": "project",
       "path": "../GoferEx.Core/GoferEx.Core.csproj",
@@ -1183,14 +964,11 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "GoferEx.Core >= 1.0.0",
-      "Google.Apis.Auth.Mvc >= 1.35.1",
       "Google.Apis.PeopleService.v1 >= 1.35.1.1328",
       "Google.GData.Client >= 2.2.0",
       "Google.GData.Contacts >= 2.2.0",
       "Google.Protobuf >= 3.6.1",
-      "Microsoft.AspNet.Mvc >= 5.2.6",
-      "Microsoft.NETCore.App >= 2.1.0",
-      "Microsoft.Owin.Security.OAuth >= 4.0.0"
+      "Microsoft.NETCore.App >= 2.1.0"
     ]
   },
   "packageFolders": {
@@ -1238,10 +1016,6 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
-          "Google.Apis.Auth.Mvc": {
-            "target": "Package",
-            "version": "[1.35.1, )"
-          },
           "Google.Apis.PeopleService.v1": {
             "target": "Package",
             "version": "[1.35.1.1328, )"
@@ -1258,19 +1032,11 @@
             "target": "Package",
             "version": "[3.6.1, )"
           },
-          "Microsoft.AspNet.Mvc": {
-            "target": "Package",
-            "version": "[5.2.6, )"
-          },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
-          },
-          "Microsoft.Owin.Security.OAuth": {
-            "target": "Package",
-            "version": "[4.0.0, )"
           }
         },
         "imports": [
@@ -1282,16 +1048,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Google.Apis.Auth.Mvc 1.35.1' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Google.Apis.Auth.Mvc",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",
@@ -1318,86 +1074,6 @@
       "warningLevel": 1,
       "message": "Package 'Google.GData.Extensions 2.2.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Google.GData.Extensions",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Mvc 5.2.6' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Mvc",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Razor 3.2.6' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Razor",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebPages 3.2.6' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.WebPages",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin 4.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Owin",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin.Security 4.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Owin.Security",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin.Security.OAuth 4.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Owin.Security.OAuth",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Web.Infrastructure",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Owin 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Owin",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"
       ]

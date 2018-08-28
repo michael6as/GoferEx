@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
-using GoferEx.Core;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Util.Store;
 using Google.Contacts;

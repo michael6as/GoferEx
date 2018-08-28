@@ -29,6 +29,10 @@ namespace GoferEx.Storage
                 {
                     File.Create(contactPath).Close();
                     File.WriteAllText(contactPath, contact.ToString());
+                    if (contact.Photo != null)
+                    {
+                        SaveImage(contact);
+                    }                    
                 });
             }
             return true;
@@ -39,6 +43,8 @@ namespace GoferEx.Storage
             var contactPath = Path.Combine(_baseContactDir, id.ToString());
             if (File.Exists(contactPath))
             {
+                var contact = JsonConvert.DeserializeObject<Contact>(File.ReadAllText(contactPath));
+                contact.Photo = GetImage(contact);
                 return JsonConvert.DeserializeObject<Contact>(File.ReadAllText(contactPath));
             }
             else
@@ -52,7 +58,9 @@ namespace GoferEx.Storage
             List<Contact> contacts = new List<Contact>();
             foreach (var filePath in Directory.EnumerateFiles(_baseContactDir))
             {
-                contacts.Add(JsonConvert.DeserializeObject<Contact>(File.ReadAllText(filePath)));
+                var contact = JsonConvert.DeserializeObject<Contact>(File.ReadAllText(filePath));
+                contact.Photo = GetImage(contact);
+                contacts.Add(contact);
             }
 
             if (contacts.Count == 0)
@@ -89,6 +97,17 @@ namespace GoferEx.Storage
             {
                 fs.Write(contact.Photo, 0, contact.Photo.Length);
             }
+        }
+
+        private byte[] GetImage(Contact contact)
+        {
+            var imgContactPath = Path.Combine(_photoContactDir, contact.Id.ToString());
+            if (File.Exists(imgContactPath))
+            {
+                return File.ReadAllBytes(imgContactPath);
+            }
+
+            return null;
         }
     }
 }

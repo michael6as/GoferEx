@@ -15,7 +15,16 @@ namespace GoferEx.Controllers
   [ApiController]
   public class SyncController : ControllerBase
   {
+    [HttpGet()]
+    public void Get(string code)
+    {
+      ContactResourceHandler contactHandler = new ContactResourceHandler(code);
+      contactHandler.ValidateToken(new CustomGoogleToken(code, "Google"));
 
+    }
+
+    // Instead of direct initializing and of course, OCP, need to change to a
+    // dictionary with Provider as the key and the Handler object as the Value
     [HttpPost()]
     public List<Contact> Post(ResourceContext context)
     {

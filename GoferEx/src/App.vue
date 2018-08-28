@@ -2,7 +2,8 @@
   <div id="app">
     <toasts/>
     <apps-panel/>
-    <users-list/>    
+    <users-list/>
+    <sync-panel/>
     <user-form/>
     <right-panel/>
   </div>
@@ -12,7 +13,7 @@
 import Toasts from './components/toasts'
 import AppsPanel from './components/apps-panel'
 import UsersList from './components/users-list'
-// import SyncPanel from './components/sync-panel'
+import SyncPanel from './components/sync-panel'
 import UserForm from './components/user-form'
 import RightPanel from './components/right-panel'
 
@@ -22,7 +23,7 @@ export default {
     Toasts,
     AppsPanel,
     UsersList,
-    // SyncPanel,
+    SyncPanel,
     UserForm,
     RightPanel
   }
