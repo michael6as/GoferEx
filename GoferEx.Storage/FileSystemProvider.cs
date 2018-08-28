@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using GoferEx.Core;
 using Newtonsoft.Json;
 
@@ -19,18 +20,21 @@ namespace GoferEx.Storage
             Directory.CreateDirectory(_photoContactDir);
         }
 
-        public bool AddContacts(List<Contact> contacts)
+        public async Task<bool> AddContacts(List<Contact> contacts)
         {
             foreach (var contact in contacts)
             {
                 var contactPath = Path.Combine(_baseContactDir, contact.Id.ToString());
-                File.Create(contactPath).Close();
-                File.WriteAllText(contactPath, contact.ToString());
+                await Task.Run(() =>
+                {
+                    File.Create(contactPath).Close();
+                    File.WriteAllText(contactPath, contact.ToString());
+                });
             }
             return true;
         }
 
-        public Contact GetContact(Guid id)
+        public async Task<Contact> GetContact(Guid id)
         {
             var contactPath = Path.Combine(_baseContactDir, id.ToString());
             if (File.Exists(contactPath))
@@ -39,12 +43,11 @@ namespace GoferEx.Storage
             }
             else
             {
-                return null;
-                //throw new FileNotFoundException(contactPath);
+                return null;                
             }
         }
 
-        public List<Contact> GetContacts()
+        public async Task<IEnumerable<Contact>> GetContacts()
         {
             List<Contact> contacts = new List<Contact>();
             foreach (var filePath in Directory.EnumerateFiles(_baseContactDir))
@@ -52,27 +55,40 @@ namespace GoferEx.Storage
                 contacts.Add(JsonConvert.DeserializeObject<Contact>(File.ReadAllText(filePath)));
             }
 
+            if (contacts.Count == 0)
+            {
+                return null;
+            }
             return contacts;
         }
 
-        public bool RemoveContact(Guid id)
+        public async Task<bool> RemoveContact(Guid id)
         {
-            File.Delete(Path.Combine(_baseContactDir, id.ToString()));
+            await Task.Run(()=>File.Delete(Path.Combine(_baseContactDir, id.ToString())));
             return true;
         }
 
-        public bool UpdateContacts(List<Contact> contacts)
+        public async Task<bool> UpdateContacts(List<Contact> contacts)
         {
             foreach (var contact in contacts)
             {
                 var contactPath = Path.Combine(_baseContactDir, contact.Id.ToString());
                 if (File.Exists(contactPath))
                 {
-                    File.WriteAllText(contactPath, contact.ToString());
+                    await Task.Run(() => File.WriteAllText(contactPath, contact.ToString()));
                 }
             }
 
             return true;
+        }
+
+        private void SaveImage(Contact contact)
+        {
+            var imgContactPath = Path.Combine(_photoContactDir, contact.Id.ToString());
+            using (var fs = File.Create(imgContactPath))
+            {
+                fs.Write(contact.Photo, 0, contact.Photo.Length);
+            }
         }
     }
 }

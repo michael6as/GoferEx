@@ -14,4 +14,12 @@
     <PackageReference Include="Microsoft.Owin.Security.OAuth" Version="4.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GoferEx.Core\GoferEx.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Google\Keys\" />
+  </ItemGroup>
+
 </Project>
