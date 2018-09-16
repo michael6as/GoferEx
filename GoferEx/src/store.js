@@ -8,7 +8,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const myApi = axios.create({
-  baseURL: 'http://localhost:1906/api/',
+  baseURL: 'http://localhost:1906/',
   withCredentials: true,
   headers: {
     'Accept': 'application/json',
@@ -25,7 +25,7 @@ function updateStorage (users) {
 }
 
 // TODO: Chnage based on line 10
-myApi.get('contact').then(res => {
+myApi.get('api/contact').then(res => {
   if (res.data.length > 0) {
     localStorage.setItem('users', res.data)
   }
@@ -49,14 +49,15 @@ export default new Vuex.Store({
     users: existUsers,
     toasts: [],
     currentUser: null,
-    syncedTokens: []
+    syncedTokens: [],
+    authSchemes: []
   },
   mutations: {
     addUser (state, user) {
       if (!user.id) {
         user.id = uuid()
       }
-      myApi.post('contact', user).then(res => {
+      myApi.post('api/contact', user).then(res => {
         state.users = res.data
       }).catch(e => {
         toast = { id: user.id, message: 'Error while adding new contact ' + e.Message, isPositive: false }
@@ -87,7 +88,7 @@ export default new Vuex.Store({
     },
     removeUser (state, user) {
       console.log('Delete storage func')
-      let reqUrl = 'contact/' + user.id
+      let reqUrl = 'api/contact/' + user.id
       myApi.delete(reqUrl).then(res => {
         state.users = res.data
       }).catch(e => {
@@ -110,7 +111,7 @@ export default new Vuex.Store({
     },
     selectUser (state, user) {
       console.log('Select storage func')
-      let reqUrl = 'contact/' + user.id
+      let reqUrl = 'api/contact/' + user.id
       myApi.get(reqUrl).then(res => {
         state.currentUser = res.data
       }).catch(e => {
@@ -124,11 +125,10 @@ export default new Vuex.Store({
     removeToast (state, toast) {
       state.toasts = _.remove(state.toasts, x => x.id !== toast.id)
     },
-    syncUser (state, token) {
-      console.log(token)
-      myApi.post('sync', token)
+    syncUser (state) {
+      myApi.get('login')
         .then(res => {
-          alert(res)
+          state.authSchemes = res.data
         }).catch(e => {
           state.toasts.push('toast')
         })

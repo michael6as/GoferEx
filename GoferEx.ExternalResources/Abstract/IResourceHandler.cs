@@ -1,5 +1,6 @@
 ﻿using GoferEx.Core;
 using System.Collections.Generic;
+using Google.GData.Client;
 
 namespace GoferEx.ExternalResources
 {
@@ -7,6 +8,6 @@ namespace GoferEx.ExternalResources
     {
         void Authenticate(string[] scopes);
         bool ValidateToken(T token);
-        IEnumerable<Contact> RetrieveContacts(T token);
+        IEnumerable<Contact> RetrieveContacts(OAuth2Parameters authParamas);
     }
 }

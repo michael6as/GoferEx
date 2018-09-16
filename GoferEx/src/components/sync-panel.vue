@@ -1,17 +1,31 @@
 <template>
-  <div class="sign-btn" @click="signIn">Sign In With Google</div>
+  <!--<div v-for="auth in authSchemes" class="sign-btn" @click="signIn(auth.LoginAuthUri)">Sign in With {{auth.DisplayName}}</div>-->
+  <ul id="example-1">
+    <li v-for="auth in authSchemes" class="sign-btn" @click="signIn(auth)">Sign in With {{auth.DisplayName}}</li>
+  </ul>
+  <!---->
 </template>
 <script>
   import Vue from 'vue'
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapState } from 'vuex'
 
   export default {
+    computed: {
+      ...mapState(['authSchemes'])
+    },
     methods: {
       ...mapMutations(['syncUser']),
-      signIn: function () {
-        let loginUrl = 'https://accounts.google.com/o/oauth2/auth?redirect_uri=http://localhost:1906/signin-google&response_type=code&client_id=535817455358-tlgkg5jca5u3kjd3jlhqr4u1ef6udt7f.apps.googleusercontent.com&scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/plus.me+https://www.googleapis.com/auth/plus.profile.language.read+https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/plus.profile.agerange.read+https://www.googleapis.com/auth/contacts.readonly&approval_prompt=force&access_type=offline'
-        window.open(loginUrl)
+      signIn: function (authInfo) {
+        let lu2 = 'https://localhost:1906/login' + authInfo.LoginAuthUri
+        let authPop = window.open(lu2, authInfo.DisplayName);
+        authPop.onbeforeunload = function (wind) {
+          alert(wind)
+        }
+        alert('ssssss')
       }
+    },
+    created: function () {
+      this.syncUser()     
     }
   }
 </script>

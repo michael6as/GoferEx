@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>c867f013-bdb5-4d87-b63b-9c46b4c2b751</UserSecretsId>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>cert.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +26,12 @@
     <ProjectReference Include="..\GoferEx.Core\GoferEx.Core.csproj" />
     <ProjectReference Include="..\GoferEx.ExternalResources\GoferEx.ExternalResources.csproj" />
     <ProjectReference Include="..\GoferEx.Storage\GoferEx.Storage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="cert.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

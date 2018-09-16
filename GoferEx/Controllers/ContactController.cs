@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using GoferEx.Core;
 using GoferEx.Storage;
@@ -17,15 +20,30 @@ namespace GoferEx.Controllers
     public ContactController() : base()
     {
       _dbProvider = new FileSystemProvider(@"F:\Gof\cts", @"F:\Gof\imgs");
-    }
+    }    
 
     [HttpGet()]
-    public List<Contact> Get()
+    public HttpResponseMessage Get()
     {
+      var resp = new HttpResponseMessage();
+
+      var nultiple = new NameValueCollection();
+
+      nultiple["names"] = "Sourav";
+
+      nultiple["surname"] = "Kayal";
+
+      nultiple["age"] = "26";
+
+      var cookie = new CookieHeaderValue("session", nultiple);
+
+      resp.Headers.AddCookies(new CookieHeaderValue[] { cookie });
+      
+      return resp;
       var contacts = _dbProvider.GetContacts().Result;
       if (contacts != null)
       {
-        return contacts.ToList();
+        //return contacts.ToList();
       }
       return null;
     }

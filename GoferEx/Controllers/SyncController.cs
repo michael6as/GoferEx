@@ -30,7 +30,7 @@ namespace GoferEx.Controllers
     {
       ContactResourceHandler contactHandler = new ContactResourceHandler(context.RedirectUri);
       contactHandler.Authenticate(context.Scopes);
-      return contactHandler.RetrieveContacts(new CustomGoogleToken(context.Token, context.Provider)).ToList();
+      return new List<Contact>();
     }
   }
 }

@@ -49,11 +49,11 @@ namespace GoferEx.ExternalResources.Google
             }
         }
 
-        public IEnumerable<GoferEx.Core.Contact> RetrieveContacts(CustomGoogleToken token)
+        public IEnumerable<GoferEx.Core.Contact> RetrieveContacts(OAuth2Parameters token)
         {
             try
             {
-                RequestSettings settings = new RequestSettings("Google contacts tutorial", _authParams);
+                RequestSettings settings = new RequestSettings("ContactsManager", token);
                 ContactsRequest cr = new ContactsRequest(settings);
                 var contacts = cr.GetContacts();
                 return CastEntriesToContacts(contacts.Entries);

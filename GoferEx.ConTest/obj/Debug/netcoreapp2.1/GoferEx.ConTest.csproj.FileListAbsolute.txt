@@ -1,0 +1,17 @@
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\GoferEx.ConTest.deps.json
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\GoferEx.ConTest.runtimeconfig.json
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\GoferEx.ConTest.runtimeconfig.dev.json
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\GoferEx.ConTest.dll
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\obj\Debug\netcoreapp2.1\GoferEx.ConTest.csproj.CoreCompileInputs.cache
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\obj\Debug\netcoreapp2.1\GoferEx.ConTest.AssemblyInfoInputs.cache
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\obj\Debug\netcoreapp2.1\GoferEx.ConTest.AssemblyInfo.cs
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\GoferEx.ConTest.pdb
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\obj\Debug\netcoreapp2.1\GoferEx.ConTest.dll
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\obj\Debug\netcoreapp2.1\GoferEx.ConTest.pdb
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\obj\Debug\netcoreapp2.1\GoferEx.ConTest.csprojAssemblyReference.cache
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\cert.pfx
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\GoferEx.Core.dll
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\GoferEx.Core.pdb
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\obj\Debug\netcoreapp2.1\GoferEx.ConTest.csproj.CopyComplete
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\GoferEx.ExternalResources.dll
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.ConTest\bin\Debug\netcoreapp2.1\GoferEx.ExternalResources.pdb
