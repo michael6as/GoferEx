@@ -8,7 +8,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const myApi = axios.create({
-  baseURL: 'http://localhost:1906/',
+  baseURL: 'http://localhost:1995/',
   withCredentials: true,
   headers: {
     'Accept': 'application/json',
@@ -16,15 +16,12 @@ const myApi = axios.create({
   }
 })
 
-// TODO: Change here to basic GET
 const localStorage = window.localStorage
 
-// TODO: Change here to basic POST
 function updateStorage (users) {
   localStorage.setItem('users', JSON.stringify(users))
 }
 
-// TODO: Chnage based on line 10
 myApi.get('api/contact').then(res => {
   if (res.data.length > 0) {
     localStorage.setItem('users', res.data)
@@ -125,10 +122,21 @@ export default new Vuex.Store({
     removeToast (state, toast) {
       state.toasts = _.remove(state.toasts, x => x.id !== toast.id)
     },
-    syncUser (state) {
+    loginChallenge (state) {
       myApi.get('login')
         .then(res => {
-          state.authSchemes = res.data
+          res.data.forEach(function (scheme) {
+            scheme.LoginChallenge = 'http://localhost:1995/login' + scheme.LoginAuthUri
+            state.authSchemes.push(scheme)
+          })
+        }).catch(e => {
+          state.toasts.push('toast')
+        })
+    },
+    syncContacts (state) {
+      myApi.get('api/sync')
+        .then(res => {
+          console.log(res.data)
         }).catch(e => {
           state.toasts.push('toast')
         })

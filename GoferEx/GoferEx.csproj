@@ -5,6 +5,7 @@
     <UserSecretsId>c867f013-bdb5-4d87-b63b-9c46b4c2b751</UserSecretsId>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>cert.pfx</AssemblyOriginatorKeyFile>
+    <StartupObject>GoferEx.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GoferEx.ConTest\GoferEx.ConTest.csproj" />
     <ProjectReference Include="..\GoferEx.Core\GoferEx.Core.csproj" />
     <ProjectReference Include="..\GoferEx.ExternalResources\GoferEx.ExternalResources.csproj" />
     <ProjectReference Include="..\GoferEx.Storage\GoferEx.Storage.csproj" />

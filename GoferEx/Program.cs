@@ -21,12 +21,7 @@ namespace GoferEx
         })
         .UseKestrel(options =>
         {
-          options.Listen(IPAddress.Loopback, 1906, listenOptions =>
-          {
-            // Configure SSL
-            var serverCertificate = LoadCertificate();
-            listenOptions.UseHttps(serverCertificate);
-          });
+          options.Listen(IPAddress.Loopback, 1995);
         })
         .UseContentRoot(Directory.GetCurrentDirectory())
         .UseIISIntegration()
@@ -50,7 +45,7 @@ namespace GoferEx
           certificatePayload = memoryStream.ToArray();
         }
 
-        return new X509Certificate2(certificatePayload, "pass1906");
+        return new X509Certificate2(certificatePayload, "pass1995");
       }
     }
   }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using GoferEx.Core;
 using Microsoft.AspNetCore.Http;
@@ -17,9 +18,9 @@ namespace GoferEx.Controllers
   {
     [HttpGet()]
     public void Get(string code)
-    {
-      ContactResourceHandler contactHandler = new ContactResourceHandler(code);
-      contactHandler.ValidateToken(new CustomGoogleToken(code, "Google"));
+    {      
+      //ContactResourceHandler contactHandler = new ContactResourceHandler(code);
+      //contactHandler.ValidateToken(new CustomGoogleToken(code, "Google"));
 
     }
 

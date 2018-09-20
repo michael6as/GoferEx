@@ -1,5 +1,5 @@
-using System;
 using Newtonsoft.Json;
+using System;
 
 namespace GoferEx.Core
 {
@@ -14,7 +14,6 @@ namespace GoferEx.Core
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
 
-        [JsonIgnore]
         public byte[] Photo { get; set; }
 
         //public Contact(string firstName, string lastName, string email, DateTime birthDate, string phoneNum, string password, byte[] photo = null)
@@ -30,16 +29,9 @@ namespace GoferEx.Core
         //}
 
         [JsonConstructor]
-        public Contact(string id, string firstName, string lastName, string username, string email, DateTime birthDate, string phone, string password, byte[] photo = null)
+        public Contact(string firstName, string lastName, string username, string email, DateTime birthDate, string phone, string password, byte[] photo = null, string id = null)
         {
-            if (id == "")
-            {
-                Id = Guid.NewGuid();
-            }
-            else
-            {
-                Id = Guid.Parse(id);
-            }
+            Id = string.IsNullOrEmpty(id) ? Guid.NewGuid() : Guid.Parse(id);
             FirstName = firstName;
             LastName = lastName;
             EmailAddress = email;

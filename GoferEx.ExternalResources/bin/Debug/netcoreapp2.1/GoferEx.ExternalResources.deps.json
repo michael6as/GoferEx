@@ -12,7 +12,8 @@
           "Google.Apis.PeopleService.v1": "1.35.1.1328",
           "Google.GData.Client": "2.2.0",
           "Google.GData.Contacts": "2.2.0",
-          "Google.Protobuf": "3.6.1"
+          "Google.Protobuf": "3.6.1",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.1.1.0"
         },
         "runtime": {
           "GoferEx.ExternalResources.dll": {}
@@ -128,6 +129,14 @@
         "runtime": {
           "GoferEx.Core.dll": {}
         }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.1.1.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.18157"
+          }
+        }
       }
     }
   },
@@ -202,6 +211,11 @@
     },
     "GoferEx.Core/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.1.1.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

@@ -14,7 +14,7 @@ using Contact = Google.Contacts.Contact;
 
 namespace GoferEx.ExternalResources.Google
 {
-    public class ContactResourceHandler : IResourceHandler<CustomGoogleToken>
+    public class ContactResourceHandler : IResourceHandler
     {
         private const string CLIENT_ID = "535817455358-tlgkg5jca5u3kjd3jlhqr4u1ef6udt7f.apps.googleusercontent.com";
         private const string CLIENT_SECRET = "Mk8mvSz3SmHmi9Enz19vsPbX";
@@ -107,8 +107,7 @@ namespace GoferEx.ExternalResources.Google
             foreach (var fContact in feedContacts)
             {
                 parsedContacts.Add(
-                    new Core.Contact(
-                        Guid.NewGuid().ToString(),
+                    new Core.Contact(                        
                         fContact.Name.FullName,
                         fContact.Name.FamilyName,
                         fContact.Name.GivenName,

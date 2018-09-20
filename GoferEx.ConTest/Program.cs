@@ -22,7 +22,7 @@ namespace GoferEx.ConTest
                 })
                 .UseKestrel(options =>
                 {
-                    options.Listen(IPAddress.Loopback, 1906, listenOptions =>
+                    options.Listen(IPAddress.Loopback, 1995, listenOptions =>
                     {
                         // Configure SSL
                         var serverCertificate = LoadCertificate();
@@ -48,7 +48,7 @@ namespace GoferEx.ConTest
                     certificatePayload = memoryStream.ToArray();
                 }
 
-                return new X509Certificate2(certificatePayload, "pass1906");
+                return new X509Certificate2(certificatePayload, "testPassword");
             }
         }
     }

@@ -45,7 +45,7 @@ namespace GoferEx.ConTest
                     {
                         // By default the client will be redirect back to the URL that issued the challenge (/login?authtype=foo),
                         // send them to the home page instead (/).
-                        await context.ChallengeAsync(authType, new AuthenticationProperties() { RedirectUri = "/" });
+                        await context.ChallengeAsync(authType, new AuthenticationProperties() { RedirectUri = "http://localhost:8080" });
                         return;
                     }
 
@@ -102,28 +102,28 @@ namespace GoferEx.ConTest
                     TokenExpiry = DateTime.Parse(await context.GetTokenAsync("expires_at")),
                     Scope = await context.GetTokenAsync("scope")
 
-                };
-                // Retrieve Contacts from API - for test only with Google
+                };                
+                //// Retrieve Contacts from API - for test only with Google
                 var a = _googleResourceHandler["Google"].RetrieveContacts(oauthParams);
-                // Display user information
-                var response = context.Response;
-                response.ContentType = "application/json";
-                await response.WriteAsync("<html><body>");
-                await response.WriteAsync("Hello " + (context.User.Identity.Name ?? "anonymous") + "<br>");
-                foreach (var claim in context.User.Claims)
-                {
-                    await response.WriteAsync(claim.Type + ": " + claim.Value + "<br>");
-                }
+                //// Display user information
+                //var response = context.Response;
+                //response.ContentType = "application/json";
+                //await response.WriteAsync("<html><body>");
+                //await response.WriteAsync("Hello " + (context.User.Identity.Name ?? "anonymous") + "<br>");
+                //foreach (var claim in context.User.Claims)
+                //{
+                //    await response.WriteAsync(claim.Type + ": " + claim.Value + "<br>");
+                //}
 
-                await response.WriteAsync("Tokens:<br>");
+                //await response.WriteAsync("Tokens:<br>");
 
-                await response.WriteAsync("Access Token: " + await context.GetTokenAsync("access_token") + "<br>");
-                await response.WriteAsync("Refresh Token: " + await context.GetTokenAsync("refresh_token") + "<br>");
-                await response.WriteAsync("Token Type: " + await context.GetTokenAsync("token_type") + "<br>");
-                await response.WriteAsync("expires_at: " + await context.GetTokenAsync("expires_at") + "<br>");
-                await response.WriteAsync("<a href=\"/logout\">Logout</a><br>");
-                await response.WriteAsync("<a href=\"/refresh_token\">Refresh Token</a><br>");
-                await response.WriteAsync("</body></html>");
+                //await response.WriteAsync("Access Token: " + await context.GetTokenAsync("access_token") + "<br>");
+                //await response.WriteAsync("Refresh Token: " + await context.GetTokenAsync("refresh_token") + "<br>");
+                //await response.WriteAsync("Token Type: " + await context.GetTokenAsync("token_type") + "<br>");
+                //await response.WriteAsync("expires_at: " + await context.GetTokenAsync("expires_at") + "<br>");
+                //await response.WriteAsync("<a href=\"/logout\">Logout</a><br>");
+                //await response.WriteAsync("<a href=\"/refresh_token\">Refresh Token</a><br>");
+                //await response.WriteAsync("</body></html>");
             });
         }
 

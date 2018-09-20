@@ -7,6 +7,9 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using GoferEx.Core;
 using GoferEx.Storage;
+using Google.GData.Client;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,27 +26,24 @@ namespace GoferEx.Controllers
     }    
 
     [HttpGet()]
-    public HttpResponseMessage Get()
+    public async Task<List<Contact>> Get()
     {
-      var resp = new HttpResponseMessage();
+      var context = this.HttpContext;
+      var oauthParams = new OAuth2Parameters()
+      {
+        AccessToken = await context.GetTokenAsync("access_token"),
+        AccessCode = await context.GetTokenAsync("code"),
+        AccessType = "offline",
+        RefreshToken = await context.GetTokenAsync("refresh_token"),
+        TokenExpiry = DateTime.Parse(await context.GetTokenAsync("expires_at")),
+        Scope = await context.GetTokenAsync("scope")
 
-      var nultiple = new NameValueCollection();
-
-      nultiple["names"] = "Sourav";
-
-      nultiple["surname"] = "Kayal";
-
-      nultiple["age"] = "26";
-
-      var cookie = new CookieHeaderValue("session", nultiple);
-
-      resp.Headers.AddCookies(new CookieHeaderValue[] { cookie });
-      
-      return resp;
+      };
+      return null;
       var contacts = _dbProvider.GetContacts().Result;
       if (contacts != null)
       {
-        //return contacts.ToList();
+        return contacts.ToList();
       }
       return null;
     }
