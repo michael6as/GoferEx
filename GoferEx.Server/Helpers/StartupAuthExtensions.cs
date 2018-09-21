@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using GoferEx.Core;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -58,6 +59,14 @@ namespace GoferEx.Server.Helpers
                     await response.WriteAsync("</body></html>");
                 });
             });
+        }
+
+        public static void AddScopes(this OAuthOptions options, IConfiguration config)
+        {
+            foreach (var scope in JsonConvert.DeserializeObject<List<string>>(config["Authentication:Google:Scopes"]))
+            {
+                options.Scope.Add(scope);
+            }
         }
     }
 }

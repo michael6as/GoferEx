@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using GoferEx.ExternalResources;
+﻿using GoferEx.Core;
+using GoferEx.Server.Helpers.Interfaces;
 using Google.GData.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-using GoferEx.Server.Helpers.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace GoferEx.Server.Helpers.TokenFactory
 {
@@ -15,16 +15,16 @@ namespace GoferEx.Server.Helpers.TokenFactory
     public class SingleAuthTokenFactory : IAuthTokenFactory
     {
 
-        public async Task<BaseOAuthToken> CreateAuthToken(HttpContext context)
+        public async Task<ResourceAuthToken> CreateAuthToken(HttpContext context)
         {
-            var accessToken = await context.GetTokenAsync("access_token");
-            if (string.IsNullOrEmpty(accessToken))
+            var cookiesProvider = context.User.Identity.AuthenticationType;
+            if (string.IsNullOrEmpty(cookiesProvider))
             {
-                throw new UnauthorizedAccessException("The user isn't google authenticated");
+                return new ResourceAuthToken("Test", "Test");
             }
             var oauthParams = new OAuth2Parameters()
             {
-                AccessToken = accessToken,
+                AccessToken = await context.GetTokenAsync("access_token"),
                 AccessCode = await context.GetTokenAsync("code"),
                 AccessType = "offline",
                 RefreshToken = await context.GetTokenAsync("refresh_token"),
@@ -32,7 +32,7 @@ namespace GoferEx.Server.Helpers.TokenFactory
                 Scope = await context.GetTokenAsync("scope")
 
             };
-            return new GoogleAuthToken(oauthParams);            
+            return new ResourceAuthToken(context.User.Identity.Name, oauthParams, cookiesProvider);
         }
     }
 }

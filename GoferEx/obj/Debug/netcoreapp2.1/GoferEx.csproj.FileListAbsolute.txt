@@ -35,5 +35,3 @@ C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx\bin\Debug\netcoreapp2.1\Gofe
 C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx\bin\Debug\netcoreapp2.1\GoferEx.ExternalResources.pdb
 C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx\bin\Debug\netcoreapp2.1\cert.pfx
-C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx\bin\Debug\netcoreapp2.1\GoferEx.ConTest.dll
-C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx\bin\Debug\netcoreapp2.1\GoferEx.ConTest.pdb

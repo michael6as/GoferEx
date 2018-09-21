@@ -1,16 +1,12 @@
-﻿using System;
+﻿using GoferEx.Core;
+using GoferEx.ExternalResources;
+using GoferEx.Server.Helpers.Interfaces;
+using GoferEx.Storage;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GoferEx.Core;
-using GoferEx.ExternalResources;
-using GoferEx.ExternalResources.Google;
-using GoferEx.Server.Helpers.Interfaces;
-using GoferEx.Server.Helpers.TokenFactory;
-using GoferEx.Storage;
-using Google.GData.Client;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GoferEx.Server.Controllers
 {
@@ -18,73 +14,72 @@ namespace GoferEx.Server.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
-        private IDbProvider _dbProvider;
-        private IResourceHandler _handler;
         private IAuthTokenFactory _factory;
-        public ContactController() : base()
+        private IDataHandler _handler;
+        public ContactController(IDbProvider dbProvider, IDataHandler handler, IAuthTokenFactory factory)
         {
-            try
-            {                
-                _dbProvider = new RedisDbProvider("localhost");
-                _handler = new GoogleResourceHandler();
-                _factory = new SingleAuthTokenFactory();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }            
+            _handler = handler;
+            _factory = factory;
+            //_dbProvider = new RedisDbProvider("localhost");
+            //_handler = new GoogleResourceHandler();
+            //_factory = new SingleAuthTokenFactory();
         }
 
         [HttpGet()]
-        public async Task<List<Contact>> Get()
+        public async Task<SyncContactObject> Get()
         {
             try
             {
-                var oauthParams = await _factory.CreateAuthToken(this.HttpContext);
-                var contacts = _handler.RetrieveContacts(oauthParams.AuthToken);
-                return contacts.ToList();
+                var token = await _factory.CreateAuthToken(HttpContext);
+                return new SyncContactObject(token.ResourceProvider, await _handler.GetContacts(token));
             }
             catch (Exception e)
             {
-                return null;
-            }            
+                throw CreateClientMessage(e, "Error Occured while getting contacts from an external provider");
+            }
         }
 
-        //[HttpGet("{id}")]
-        //public Contact Get(string id)
-        //{
-        //    return _dbProvider.GetContact(Guid.Parse(id)).Result;
-        //}
+        [HttpPost()]
+        public async Task<IEnumerable<Contact>> Post([FromBody]Contact[] contacts)
+        {
+            try
+            {
+                var token = await _factory.CreateAuthToken(HttpContext);
+                await _handler.UpdateContacts(token, contacts.ToList(), false);
+                return await _handler.GetContacts(token);
+            }
+            catch (Exception e)
+            {
+                throw CreateClientMessage(e, "Error Occured while changing contacts");
+            }
+        }
 
-        //[HttpPost()]
-        //public List<Contact> Post([FromBody]Contact contact)
-        //{
-        //    var contactList = new List<Contact>() { contact };
-        //    if (_dbProvider.GetContact(Guid.Parse(contact.Id.ToString())) != null)
-        //    {
-        //        _dbProvider.UpdateContacts(contactList);
-        //    }
-        //    else
-        //    {
-        //        _dbProvider.AddContacts(contactList);
-        //    }
-        //    return _dbProvider.GetContacts().Result.ToList();
-        //}
+        [HttpDelete()]
+        public async Task<IEnumerable<Contact>> Delete([FromBody]Contact contact)
+        {
+            try
+            {
+                var token = await _factory.CreateAuthToken(HttpContext);
+                var contactList = new List<Contact>() { contact };
+                await _handler.DeleteContacts(token, contactList, false);
+                return await _handler.GetContacts(token);
+            }
+            catch (Exception e)
+            {
+                throw CreateClientMessage(e, "Error Occured while changing contacts");
+            }
+        }        
 
-        //[HttpDelete("{id}")]
-        //public List<Contact> Delete(string id)
-        //{
-        //    if (_dbProvider.RemoveContact(Guid.Parse(id)).Result)
-        //    {
-        //        var contacts = _dbProvider.GetContacts().Result;
-        //        if (contacts != null)
-        //        {
-        //            return _dbProvider.GetContacts().Result.ToList();
-        //        }
-        //    }
-
-        //    return null;
-        //}
+        /// <summary>
+        /// Create an error message to display for user.
+        /// The client should get an error obj instead of an exception
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="userMsg"></param>
+        /// <returns></returns>
+        private Exception CreateClientMessage(Exception e, string userMsg)
+        {
+            return new Exception($"{userMsg} Exception Details: {e.Message}");
+        }
     }
 }

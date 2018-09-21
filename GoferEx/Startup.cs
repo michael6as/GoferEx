@@ -1,4 +1,3 @@
-using GoferEx.ConTest;
 using GoferEx.ExternalResources;
 using GoferEx.ExternalResources.Google;
 using Microsoft.AspNetCore.Authentication;
@@ -130,139 +129,139 @@ namespace GoferEx
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
-      Dictionary<string, IResourceHandler<CustomGoogleToken>> d = new Dictionary<string, IResourceHandler<CustomGoogleToken>>();
-      d.Add("Google", new ContactResourceHandler("aaaa"));
-      CustomAuthHelper c = new CustomAuthHelper(app, d, Configuration);
-      app.UseDeveloperExceptionPage();
-      app.UseCors("AllowAll");
+      //Dictionary<string, IResourceHandler<CustomGoogleToken>> d = new Dictionary<string, IResourceHandler<CustomGoogleToken>>();
+      //d.Add("Google", new ContactResourceHandler("aaaa"));
+      //CustomAuthHelper c = new CustomAuthHelper(app, d, Configuration);
+      //app.UseDeveloperExceptionPage();
+      //app.UseCors("AllowAll");
 
-      app.UseAuthentication();
-      c.RouteAuthLogin();
+      //app.UseAuthentication();
+      //c.RouteAuthLogin();
 
-      app.Map("/refresh_token", signinApp =>
-      {
-        signinApp.Run(async context =>
-        {
-          HttpResponse response = context.Response;
+      //app.Map("/refresh_token", signinApp =>
+      //{
+      //  signinApp.Run(async context =>
+      //  {
+      //    HttpResponse response = context.Response;
 
-          // Setting DefaultAuthenticateScheme causes User to be set
-          // var user = context.User;
+      //    // Setting DefaultAuthenticateScheme causes User to be set
+      //    // var user = context.User;
 
-          // This is what [Authorize] calls
-          AuthenticateResult userResult = await context.AuthenticateAsync();
-          ClaimsPrincipal user = userResult.Principal;
-          AuthenticationProperties authProperties = userResult.Properties;
+      //    // This is what [Authorize] calls
+      //    AuthenticateResult userResult = await context.AuthenticateAsync();
+      //    ClaimsPrincipal user = userResult.Principal;
+      //    AuthenticationProperties authProperties = userResult.Properties;
 
-          // This is what [Authorize(ActiveAuthenticationSchemes = MicrosoftAccountDefaults.AuthenticationScheme)] calls
-          // var user = await context.AuthenticateAsync(MicrosoftAccountDefaults.AuthenticationScheme);
+      //    // This is what [Authorize(ActiveAuthenticationSchemes = MicrosoftAccountDefaults.AuthenticationScheme)] calls
+      //    // var user = await context.AuthenticateAsync(MicrosoftAccountDefaults.AuthenticationScheme);
 
-          // Deny anonymous request beyond this point.
-          if (!userResult.Succeeded || user == null || !user.Identities.Any(identity => identity.IsAuthenticated))
-          {
-            // This is what [Authorize] calls
-            // The cookie middleware will handle this and redirect to /login
-            await context.ChallengeAsync();
+      //    // Deny anonymous request beyond this point.
+      //    if (!userResult.Succeeded || user == null || !user.Identities.Any(identity => identity.IsAuthenticated))
+      //    {
+      //      // This is what [Authorize] calls
+      //      // The cookie middleware will handle this and redirect to /login
+      //      await context.ChallengeAsync();
 
-            // This is what [Authorize(ActiveAuthenticationSchemes = MicrosoftAccountDefaults.AuthenticationScheme)] calls
-            // await context.ChallengeAsync(MicrosoftAccountDefaults.AuthenticationScheme);
+      //      // This is what [Authorize(ActiveAuthenticationSchemes = MicrosoftAccountDefaults.AuthenticationScheme)] calls
+      //      // await context.ChallengeAsync(MicrosoftAccountDefaults.AuthenticationScheme);
 
-            return;
-          }
+      //      return;
+      //    }
 
-          string currentAuthType = user.Identities.First().AuthenticationType;
-          if (string.Equals(GoogleDefaults.AuthenticationScheme, currentAuthType))
-          {
-            string refreshToken = authProperties.GetTokenValue("refresh_token");
+      //    string currentAuthType = user.Identities.First().AuthenticationType;
+      //    if (string.Equals(GoogleDefaults.AuthenticationScheme, currentAuthType))
+      //    {
+      //      string refreshToken = authProperties.GetTokenValue("refresh_token");
 
-            if (string.IsNullOrEmpty(refreshToken))
-            {
-              response.ContentType = "text/html";
-              await response.WriteAsync("<html><body>");
-              await response.WriteAsync("No refresh_token is available.<br>");
-              await response.WriteAsync("<a href=\"/\">Home</a>");
-              await response.WriteAsync("</body></html>");
-              return;
-            }
+      //      if (string.IsNullOrEmpty(refreshToken))
+      //      {
+      //        response.ContentType = "text/html";
+      //        await response.WriteAsync("<html><body>");
+      //        await response.WriteAsync("No refresh_token is available.<br>");
+      //        await response.WriteAsync("<a href=\"/\">Home</a>");
+      //        await response.WriteAsync("</body></html>");
+      //        return;
+      //      }
 
-            OAuthOptions options = await GetOAuthOptionsAsync(context, currentAuthType);
+      //      OAuthOptions options = await GetOAuthOptionsAsync(context, currentAuthType);
 
-            Dictionary<string, string> pairs = new Dictionary<string, string>()
-                        {
-                            { "client_id", options.ClientId },
-                            { "client_secret", options.ClientSecret },
-                            { "grant_type", "refresh_token" },
-                            { "refresh_token", refreshToken }
-                        };
-            FormUrlEncodedContent content = new FormUrlEncodedContent(pairs);
-            HttpResponseMessage refreshResponse = await options.Backchannel.PostAsync(options.TokenEndpoint, content, context.RequestAborted);
-            refreshResponse.EnsureSuccessStatusCode();
+      //      Dictionary<string, string> pairs = new Dictionary<string, string>()
+      //                  {
+      //                      { "client_id", options.ClientId },
+      //                      { "client_secret", options.ClientSecret },
+      //                      { "grant_type", "refresh_token" },
+      //                      { "refresh_token", refreshToken }
+      //                  };
+      //      FormUrlEncodedContent content = new FormUrlEncodedContent(pairs);
+      //      HttpResponseMessage refreshResponse = await options.Backchannel.PostAsync(options.TokenEndpoint, content, context.RequestAborted);
+      //      refreshResponse.EnsureSuccessStatusCode();
 
-            JObject payload = JObject.Parse(await refreshResponse.Content.ReadAsStringAsync());
+      //      JObject payload = JObject.Parse(await refreshResponse.Content.ReadAsStringAsync());
 
-            // Persist the new acess token
-            authProperties.UpdateTokenValue("access_token", payload.Value<string>("access_token"));
-            refreshToken = payload.Value<string>("refresh_token");
-            if (!string.IsNullOrEmpty(refreshToken))
-            {
-              authProperties.UpdateTokenValue("refresh_token", refreshToken);
-            }
-            if (int.TryParse(payload.Value<string>("expires_in"), NumberStyles.Integer, CultureInfo.InvariantCulture, out int seconds))
-            {
-              DateTimeOffset expiresAt = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(seconds);
-              authProperties.UpdateTokenValue("expires_at", expiresAt.ToString("o", CultureInfo.InvariantCulture));
-            }
-            await context.SignInAsync(user, authProperties);
+      //      // Persist the new acess token
+      //      authProperties.UpdateTokenValue("access_token", payload.Value<string>("access_token"));
+      //      refreshToken = payload.Value<string>("refresh_token");
+      //      if (!string.IsNullOrEmpty(refreshToken))
+      //      {
+      //        authProperties.UpdateTokenValue("refresh_token", refreshToken);
+      //      }
+      //      if (int.TryParse(payload.Value<string>("expires_in"), NumberStyles.Integer, CultureInfo.InvariantCulture, out int seconds))
+      //      {
+      //        DateTimeOffset expiresAt = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(seconds);
+      //        authProperties.UpdateTokenValue("expires_at", expiresAt.ToString("o", CultureInfo.InvariantCulture));
+      //      }
+      //      await context.SignInAsync(user, authProperties);
 
-            await PrintRefreshedTokensAsync(response, payload, authProperties);
+      //      await PrintRefreshedTokensAsync(response, payload, authProperties);
 
-            return;
-          }
-          // https://developers.facebook.com/docs/facebook-login/access-tokens/expiration-and-extension
+      //      return;
+      //    }
+      //    // https://developers.facebook.com/docs/facebook-login/access-tokens/expiration-and-extension
 
-          response.ContentType = "text/html";
-          await response.WriteAsync("<html><body>");
-          await response.WriteAsync("Refresh has not been implemented for this provider.<br>");
-          await response.WriteAsync("<a href=\"/\">Home</a>");
-          await response.WriteAsync("</body></html>");
-        });
-      });
+      //    response.ContentType = "text/html";
+      //    await response.WriteAsync("<html><body>");
+      //    await response.WriteAsync("Refresh has not been implemented for this provider.<br>");
+      //    await response.WriteAsync("<a href=\"/\">Home</a>");
+      //    await response.WriteAsync("</body></html>");
+      //  });
+      //});
 
-      // Sign-out to remove the user cookie.
-      app.Map("/logout", signoutApp =>
-      {
-        signoutApp.Run(async context =>
-        {
-          HttpResponse response = context.Response;
-          response.ContentType = "text/html";
-          await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-          await response.WriteAsync("<html><body>");
-          await response.WriteAsync("You have been logged out. Goodbye " + context.User.Identity.Name + "<br>");
-          await response.WriteAsync("<a href=\"/\">Home</a>");
-          await response.WriteAsync("</body></html>");
-        });
-      });
+      //// Sign-out to remove the user cookie.
+      //app.Map("/logout", signoutApp =>
+      //{
+      //  signoutApp.Run(async context =>
+      //  {
+      //    HttpResponse response = context.Response;
+      //    response.ContentType = "text/html";
+      //    await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+      //    await response.WriteAsync("<html><body>");
+      //    await response.WriteAsync("You have been logged out. Goodbye " + context.User.Identity.Name + "<br>");
+      //    await response.WriteAsync("<a href=\"/\">Home</a>");
+      //    await response.WriteAsync("</body></html>");
+      //  });
+      //});
 
-      // Display the remote error
-      app.Map("/error", errorApp =>
-      {
-        errorApp.Run(async context =>
-        {
-          HttpResponse response = context.Response;
-          response.ContentType = "text/html";
-          await response.WriteAsync("<html><body>");
-          await response.WriteAsync("An remote failure has occurred: " + context.Request.Query["FailureMessage"] + "<br>");
-          await response.WriteAsync("<a href=\"/\">Home</a>");
-          await response.WriteAsync("</body></html>");
-        });
-      });
+      //// Display the remote error
+      //app.Map("/error", errorApp =>
+      //{
+      //  errorApp.Run(async context =>
+      //  {
+      //    HttpResponse response = context.Response;
+      //    response.ContentType = "text/html";
+      //    await response.WriteAsync("<html><body>");
+      //    await response.WriteAsync("An remote failure has occurred: " + context.Request.Query["FailureMessage"] + "<br>");
+      //    await response.WriteAsync("<a href=\"/\">Home</a>");
+      //    await response.WriteAsync("</body></html>");
+      //  });
+      //});
 
-      //c.RouteAuthSuccess();
+      ////c.RouteAuthSuccess();
 
-      app.UseHttpsRedirection();
-      //CustomAuthenticationHandler c = new CustomAuthenticationHandler();
-      //c.ConfigureLoginAuthRoutes(app);
-      //c.ConfigureSuccessAuth(app);
-      app.UseMvc();
+      //app.UseHttpsRedirection();
+      ////CustomAuthenticationHandler c = new CustomAuthenticationHandler();
+      ////c.ConfigureLoginAuthRoutes(app);
+      ////c.ConfigureSuccessAuth(app);
+      //app.UseMvc();
     }
 
     private Task<OAuthOptions> GetOAuthOptionsAsync(HttpContext context, string currentAuthType)

@@ -26,12 +26,12 @@ namespace GoferEx.Controllers
 
     // Instead of direct initializing and of course, OCP, need to change to a
     // dictionary with Provider as the key and the Handler object as the Value
-    [HttpPost()]
-    public List<Contact> Post(ResourceContext context)
-    {
-      ContactResourceHandler contactHandler = new ContactResourceHandler(context.RedirectUri);
-      contactHandler.Authenticate(context.Scopes);
-      return new List<Contact>();
-    }
+    //[HttpPost()]
+    //public List<Contact> Post(ResourceContext context)
+    //{
+    //  ContactResourceHandler contactHandler = new ContactResourceHandler(context.RedirectUri);
+    //  contactHandler.Authenticate(context.Scopes);
+    //  return new List<Contact>();
+    //}
   }
 }

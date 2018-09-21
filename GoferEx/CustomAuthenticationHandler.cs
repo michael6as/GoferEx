@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using SchemeObject = GoferEx.Core.SchemeObject;
 
 namespace GoferEx
 {
@@ -40,12 +41,12 @@ namespace GoferEx
           var response = context.Response;
           response.ContentType = "application/json";
           var schemeProvider = context.RequestServices.GetRequiredService<IAuthenticationSchemeProvider>();
-          var schemeNames = new List<AuthInfoObject>();
+          var schemeNames = new List<SchemeObject>();
           foreach (var provider in await schemeProvider.GetAllSchemesAsync())
           {
             if (provider.DisplayName != null)
             {              
-              schemeNames.Add(new AuthInfoObject(provider.Name,provider.DisplayName, "?authscheme=" + provider.Name));
+              schemeNames.Add(new SchemeObject(provider.Name,provider.DisplayName, "?authscheme=" + provider.Name));
             }
           }          
           await response.Body.WriteAsync(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(schemeNames)));

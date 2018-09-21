@@ -10,3 +10,4 @@ C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Storage\obj\Debug\netcoreapp
 C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Storage\obj\Debug\netcoreapp2.1\GoferEx.Storage.csproj.CopyComplete
 C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Storage\obj\Debug\netcoreapp2.1\GoferEx.Storage.dll
 C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Storage\obj\Debug\netcoreapp2.1\GoferEx.Storage.pdb
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Storage\bin\Debug\netcoreapp2.1\Google.GData.Client.dll

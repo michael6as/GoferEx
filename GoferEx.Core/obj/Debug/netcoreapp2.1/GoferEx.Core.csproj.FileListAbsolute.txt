@@ -6,3 +6,6 @@ C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Core\obj\Debug\netcoreapp2.1
 C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Core\obj\Debug\netcoreapp2.1\GoferEx.Core.AssemblyInfo.cs
 C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Core\obj\Debug\netcoreapp2.1\GoferEx.Core.dll
 C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Core\obj\Debug\netcoreapp2.1\GoferEx.Core.pdb
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Core\bin\Debug\netcoreapp2.1\Google.GData.Client.dll
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Core\obj\Debug\netcoreapp2.1\GoferEx.Core.csproj.CopyComplete
+C:\Users\Michael\source\repos\Gofer\GoferEx\GoferEx.Core\obj\Debug\netcoreapp2.1\GoferEx.Core.csprojAssemblyReference.cache
