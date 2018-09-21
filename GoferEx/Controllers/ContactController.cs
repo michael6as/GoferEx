@@ -22,7 +22,7 @@ namespace GoferEx.Controllers
     private IDbProvider _dbProvider;
     public ContactController() : base()
     {
-      _dbProvider = new FileSystemProvider(@"F:\Gof\cts", @"F:\Gof\imgs");
+      //_dbProvider = new FileSystemProvider(@"F:\Gof\cts", @"F:\Gof\imgs");
     }    
 
     [HttpGet()]
@@ -40,48 +40,48 @@ namespace GoferEx.Controllers
 
       };
       return null;
-      var contacts = _dbProvider.GetContacts().Result;
-      if (contacts != null)
-      {
-        return contacts.ToList();
-      }
-      return null;
+      //var contacts = _dbProvider.GetContacts().Result;
+      //if (contacts != null)
+      //{
+      //  return contacts.ToList();
+      //}
+      //return null;
     }
 
-    [HttpGet("{id}")]
-    public Contact Get(string id)
-    {
-      return _dbProvider.GetContact(Guid.Parse(id)).Result;
-    }
+    //[HttpGet("{id}")]
+    //public Contact Get(string id)
+    //{
+    //  return _dbProvider.GetContact(Guid.Parse(id)).Result;
+    //}
 
-    [HttpPost()]
-    public List<Contact> Post([FromBody]Contact contact)
-    {
-      var contactList = new List<Contact>() { contact };
-      if (_dbProvider.GetContact(Guid.Parse(contact.Id.ToString())) != null)
-      {
-        _dbProvider.UpdateContacts(contactList);
-      }
-      else
-      {
-        _dbProvider.AddContacts(contactList);
-      }      
-      return _dbProvider.GetContacts().Result.ToList();
-    }
+    //[HttpPost()]
+    //public List<Contact> Post([FromBody]Contact contact)
+    //{
+    //  var contactList = new List<Contact>() { contact };
+    //  if (_dbProvider.GetContact(Guid.Parse(contact.Id.ToString())) != null)
+    //  {
+    //    _dbProvider.UpdateContacts(contactList);
+    //  }
+    //  else
+    //  {
+    //    _dbProvider.AddContacts(contactList);
+    //  }      
+    //  return _dbProvider.GetContacts().Result.ToList();
+    //}
 
-    [HttpDelete("{id}")]
-    public List<Contact> Delete(string id)
-    {
-      if (_dbProvider.RemoveContact(Guid.Parse(id)).Result)
-      {
-        var contacts = _dbProvider.GetContacts().Result;
-        if (contacts != null)
-        {
-          return _dbProvider.GetContacts().Result.ToList();
-        }
-      }
+    //[HttpDelete("{id}")]
+    //public List<Contact> Delete(string id)
+    //{
+    //  if (_dbProvider.RemoveContact(Guid.Parse(id)).Result)
+    //  {
+    //    var contacts = _dbProvider.GetContacts().Result;
+    //    if (contacts != null)
+    //    {
+    //      return _dbProvider.GetContacts().Result.ToList();
+    //    }
+    //  }
 
-      return null;
-    }
+    //  return null;
+    //}
   }
 }

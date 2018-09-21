@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GoferEx.Core\GoferEx.Core.csproj" />
+    <ProjectReference Include="..\GoferEx.Storage\GoferEx.Storage.csproj" />
   </ItemGroup>
 
   <ItemGroup>

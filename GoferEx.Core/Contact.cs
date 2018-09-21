@@ -5,7 +5,7 @@ namespace GoferEx.Core
 {
     public class Contact
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
@@ -31,7 +31,7 @@ namespace GoferEx.Core
         [JsonConstructor]
         public Contact(string firstName, string lastName, string username, string email, DateTime birthDate, string phone, string password, byte[] photo = null, string id = null)
         {
-            Id = string.IsNullOrEmpty(id) ? Guid.NewGuid() : Guid.Parse(id);
+            Id = string.IsNullOrEmpty(id) ? Guid.NewGuid().ToString() : id;
             FirstName = firstName;
             LastName = lastName;
             EmailAddress = email;

@@ -754,6 +754,7 @@
       "GoferEx.ExternalResources/1.0.0": {
         "dependencies": {
           "GoferEx.Core": "1.0.0",
+          "GoferEx.Storage": "1.0.0",
           "Google.Apis.PeopleService.v1": "1.35.1.1328",
           "Google.GData.Client": "2.2.0",
           "Google.GData.Contacts": "2.2.0",

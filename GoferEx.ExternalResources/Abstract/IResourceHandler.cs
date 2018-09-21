@@ -6,6 +6,9 @@ namespace GoferEx.ExternalResources
 {
     public interface IResourceHandler
     {
-        IEnumerable<Contact> RetrieveContacts(OAuth2Parameters authParamas);
+        IEnumerable<Contact> RetrieveContacts(ResourceAuthToken authParams);
+
+        bool AddContacts(ResourceAuthToken authParams, IEnumerable<Contact> contacts);
+        bool DeleteContacts(ResourceAuthToken authParams, IEnumerable<Contact> contacts);
     }
 }
