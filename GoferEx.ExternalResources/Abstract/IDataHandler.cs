@@ -1,8 +1,8 @@
-﻿using GoferEx.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using GoferEx.Core;
 
-namespace GoferEx.ExternalResources
+namespace GoferEx.ExternalResources.Abstract
 {
     /// <summary>
     /// Interface for combining the data from the external resources with the Database

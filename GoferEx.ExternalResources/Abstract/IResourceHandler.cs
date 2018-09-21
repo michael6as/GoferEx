@@ -1,8 +1,7 @@
-﻿using GoferEx.Core;
-using System.Collections.Generic;
-using Google.GData.Client;
+﻿using System.Collections.Generic;
+using GoferEx.Core;
 
-namespace GoferEx.ExternalResources
+namespace GoferEx.ExternalResources.Abstract
 {
     public interface IResourceHandler
     {

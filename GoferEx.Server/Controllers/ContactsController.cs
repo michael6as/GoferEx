@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoferEx.ExternalResources.Abstract;
 
 namespace GoferEx.Server.Controllers
 {
@@ -16,7 +17,7 @@ namespace GoferEx.Server.Controllers
     {
         private IAuthTokenFactory _factory;
         private IDataHandler _handler;
-        public ContactController(IDbProvider dbProvider, IDataHandler handler, IAuthTokenFactory factory)
+        public ContactController(IDataHandler handler, IAuthTokenFactory factory)
         {
             _handler = handler;
             _factory = factory;

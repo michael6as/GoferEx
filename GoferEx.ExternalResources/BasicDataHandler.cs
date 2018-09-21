@@ -3,6 +3,7 @@ using GoferEx.Storage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoferEx.ExternalResources.Abstract;
 
 namespace GoferEx.ExternalResources
 {

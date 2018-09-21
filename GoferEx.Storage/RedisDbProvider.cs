@@ -11,7 +11,7 @@ namespace GoferEx.Storage
 {
     public class RedisDbProvider : IDbProvider
     {
-        private ConnectionMultiplexer _redisConn;
+        private readonly ConnectionMultiplexer _redisConn;
         public RedisDbProvider(string redisHost)
         {
             _redisConn = ConnectionMultiplexer.Connect(redisHost);
@@ -26,16 +26,16 @@ namespace GoferEx.Storage
 
         public async Task<bool> RemoveContact(string id, Contact contact)
         {
-            return await _redisConn.GetDatabase().HashDeleteAsync(id, contact.Id.ToString());
+            return await _redisConn.GetDatabase().HashDeleteAsync(id, contact.Id);
         }
 
         public async Task<bool> UpdateContacts(string id, List<Contact> contacts)
         {
             IDatabase db = _redisConn.GetDatabase();            
-            List<Contact> errorContacts = new List<Contact>();
+            var errorContacts = new List<Contact>();
             foreach (Contact contact in contacts)
             {
-                if (!await db.HashSetAsync(id, contact.Id.ToString(), contact.ToString()))
+                if (!await db.HashSetAsync(id, contact.Id, contact.ToString()))
                 {
                     errorContacts.Add(contact);
                 }

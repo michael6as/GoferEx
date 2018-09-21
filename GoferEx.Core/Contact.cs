@@ -16,18 +16,6 @@ namespace GoferEx.Core
 
         public byte[] Photo { get; set; }
 
-        //public Contact(string firstName, string lastName, string email, DateTime birthDate, string phoneNum, string password, byte[] photo = null)
-        //{
-        //    Id = Guid.NewGuid();
-        //    FirstName = firstName;
-        //    LastName = lastName;
-        //    EmailAddress = email;
-        //    BirthDate = birthDate;
-        //    PhoneNumber = phoneNum;
-        //    Password = password;
-        //    Photo = photo;
-        //}
-
         [JsonConstructor]
         public Contact(string firstName, string lastName, string username, string email, DateTime birthDate, string phone, string password, byte[] photo = null, string id = null)
         {

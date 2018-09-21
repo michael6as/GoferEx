@@ -9,11 +9,11 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using GoferEx.ExternalResources.Abstract;
 using Contact = GoferEx.Core.Contact;
 
 namespace GoferEx.ExternalResources.Google
 {
-    // TODO 1: Add Another interface for strategy-pattern the resources
     public class GoogleResourceHandler : IResourceHandler
     {
         public IEnumerable<Contact> RetrieveContacts(ResourceAuthToken authParams)
@@ -108,6 +108,7 @@ namespace GoferEx.ExternalResources.Google
             foreach (var contact in contacts)
             {
                 var retrievedContact = cr.Retrieve<global::Google.Contacts.Contact>(new Uri(contact.Id));
+                cr.Delete(retrievedContact);
             }
 
             return true;
@@ -116,13 +117,9 @@ namespace GoferEx.ExternalResources.Google
         private IEnumerable<Contact> CastEntriesToContacts(IEnumerable<global::Google.Contacts.Contact> feedContacts, ContactsRequest contactReq)
         {
             IList<Core.Contact> parsedContacts = new List<Contact>();
-            foreach (global::Google.Contacts.Contact fContact in feedContacts)
+            foreach (var fContact in feedContacts)
             {
-                if (string.IsNullOrEmpty(fContact.Name.FullName))
-                {
-
-                }
-                else
+                if (!string.IsNullOrEmpty(fContact.Name.FullName))
                 {
                     parsedContacts.Add(
                         new Contact(
@@ -150,7 +147,7 @@ namespace GoferEx.ExternalResources.Google
             }
             catch (Exception)
             {
-                // TODO: Create default photo for unavailable photos
+                // Should create deafult photo for unavailable pictures
                 return null;
             }
         }

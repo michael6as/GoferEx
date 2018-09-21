@@ -26,9 +26,7 @@ namespace GoferEx.Server
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                //.UseStartup<Startup>()
                 .Build().Run();
-            //CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

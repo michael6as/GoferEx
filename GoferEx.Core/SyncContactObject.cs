@@ -4,8 +4,8 @@ namespace GoferEx.Core
 {
     public class SyncContactObject
     {
-        public string Provider { get; private set; }
-        public IEnumerable<Contact> RetrievedContacts { get; private set; }
+        public string Provider { get; }
+        public IEnumerable<Contact> RetrievedContacts { get; }
 
         public SyncContactObject(string provider, IEnumerable<Contact> retrievedContacts)
         {
