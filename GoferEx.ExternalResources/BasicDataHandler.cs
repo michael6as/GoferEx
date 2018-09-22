@@ -1,9 +1,11 @@
 ﻿using GoferEx.Core;
+using GoferEx.ExternalResources.Abstract;
 using GoferEx.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GoferEx.ExternalResources.Abstract;
+using Google.GData.Client;
 
 namespace GoferEx.ExternalResources
 {
@@ -12,8 +14,8 @@ namespace GoferEx.ExternalResources
     /// </summary>
     public class BasicDataHandler : IDataHandler
     {
-        private IDictionary<string, IResourceHandler> _resourceHandlers;
-        private IDbProvider _dbProvider;
+        private readonly IDictionary<string, IResourceHandler> _resourceHandlers;
+        private readonly IDbProvider _dbProvider;
 
         public BasicDataHandler(IDictionary<string, IResourceHandler> resourceHandlers, IDbProvider dbProvider)
         {
@@ -21,19 +23,43 @@ namespace GoferEx.ExternalResources
             _dbProvider = dbProvider;
         }
 
-        public async Task<IEnumerable<Contact>> GetContacts(ResourceAuthToken token)
+        public async Task<SyncContactObject> GetContacts(ResourceAuthToken token)
         {
 
             var dbContacts = await _dbProvider.GetContacts(token.Id);
-            if (token.AuthToken != null && _resourceHandlers.ContainsKey(token.ResourceProvider))
+            if (token.AuthToken == null || !_resourceHandlers.ContainsKey(token.ResourceProvider))
             {
-                var externalContacts = _resourceHandlers[token.ResourceProvider].RetrieveContacts(token);
-                var newContacts = externalContacts.Where(externalContact => dbContacts.Any(dbContact => dbContact.Id != externalContact.Id)).ToList();
-                await _dbProvider.UpdateContacts(token.Id, newContacts);
+                return new SyncContactObject(dbContacts.ToList(), token.ResourceProvider);
             }
 
-            dbContacts = await _dbProvider.GetContacts(token.Id);
-            return dbContacts.ToList();
+            try
+            {
+                var externalContacts = _resourceHandlers[token.ResourceProvider].RetrieveContacts(token);
+                var newContacts = externalContacts.Where(externalContact =>
+                    dbContacts.All(dbContact => dbContact.Id != externalContact.Id));                    
+                await _dbProvider.UpdateContacts(token.Id, newContacts.ToList());
+                dbContacts = await _dbProvider.GetContacts(token.Id);
+            }
+            catch (GDataRequestException e)
+            {
+                var errMsg = new ErrorMessage($"Error occurred while retrieving data from {token.ResourceProvider}. Refresh token",
+                    e);
+                return new SyncContactObject(dbContacts, token.ResourceProvider, errMsg);
+            }
+            catch (Exception e)
+            {
+                var errMsg = new ErrorMessage($"General error occurred",
+                    e);
+                return new SyncContactObject(dbContacts, token.ResourceProvider, errMsg);                    
+            }
+            return new SyncContactObject(dbContacts.ToList(), token.ResourceProvider);
+        }
+
+        public async Task<SyncContactObject> GetContact(ResourceAuthToken token, string id)
+        {
+            var dbContacts = await _dbProvider.GetContacts(token.Id);
+            return new SyncContactObject(new List<Contact>()
+                {dbContacts.FirstOrDefault(dbContact => HttpUtility.UrlDecode(dbContact.Id) == id)},token.ResourceProvider);
         }
 
         public async Task<IEnumerable<Contact>> UpdateContacts(ResourceAuthToken token, IEnumerable<Contact> updatedContacts, bool changeInResource = false)
@@ -48,16 +74,13 @@ namespace GoferEx.ExternalResources
             return await _dbProvider.GetContacts(token.Id);
         }
 
-        public async Task<IEnumerable<Contact>> DeleteContacts(ResourceAuthToken token, IEnumerable<Contact> updatedContacts, bool changeInResource = false)
+        public async Task<IEnumerable<Contact>> DeleteContact(ResourceAuthToken token, string contactId, bool changeInResource = false)
         {
-            var contactsList = updatedContacts.ToList();
-            foreach (var updatedContact in contactsList)
-            {
-                await _dbProvider.RemoveContact(token.Id, updatedContact);
-            }
+            await _dbProvider.RemoveContact(token.Id,
+                (await GetContact(token, contactId)).RetrievedContacts.FirstOrDefault());
             if (changeInResource && _resourceHandlers.ContainsKey(token.ResourceProvider))
             {
-                _resourceHandlers[token.ResourceProvider].DeleteContacts(token, contactsList);
+                _resourceHandlers[token.ResourceProvider].DeleteContact(token, contactId);
             }
             return await _dbProvider.GetContacts(token.Id);
         }

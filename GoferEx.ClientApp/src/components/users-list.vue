@@ -7,15 +7,18 @@
 
 <script>
 import UserListItem from './user-list-item'
-import {mapMutations,mapState} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 
 export default {
   components: {UserListItem},
-  computed:{
-      ...mapState(['users'])
+  computed: {
+    ...mapState(['users'])
   },
-  methods:{
-      ...mapMutations(['selectUser'])
+  methods: {
+    ...mapMutations(['getContacts', 'selectUser'])
+  },
+  created: function () {
+    this.getContacts()
   }
 }
 </script>

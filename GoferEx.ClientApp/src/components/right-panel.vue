@@ -5,33 +5,33 @@
         <div class="recent-users-wrapper">
             <div class="recent-user" v-for="user in recentUsers" :key="user.id" @click="selectUser(user)">
                 <div class="badge" v-if="user.username.length > 5"/>
-                <img :src="user.photo"/>
+                <img :src="'data:image/jpeg;base64,'+user.photo"/>
             </div>
         </div>
 
         <div class="header-md">Recent Photos</div>
         <div class="recent-photos-wrapper">
-            <img :src="user.photo" v-for="user in recentPhotoUsers" :key="user.id" @click="selectUser(user)"/>
+            <img :src="'data:image/jpeg;base64,'+user.photo" v-for="user in recentPhotoUsers" :key="user.id" @click="selectUser(user)"/>
         </div>
 
-    </div>  
+    </div>
 </template>
 
 <script>
-import {mapMutations,mapState} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 
 export default {
   computed: {
-      ...mapState(['users']),
-      recentUsers () {
-        return this.users.slice(0,12)
-      },
-      recentPhotoUsers () {
-          return this.users.slice(0,5)
-      }
+    ...mapState(['users']),
+    recentUsers () {
+      return this.users.slice(0, 12)
+    },
+    recentPhotoUsers () {
+      return this.users.slice(0, 5)
+    }
   },
-  methods:{
-      ...mapMutations(['selectUser'])
+  methods: {
+    ...mapMutations(['selectUser'])
   }
 }
 </script>
@@ -107,4 +107,3 @@ export default {
 }
 
 </style>
-

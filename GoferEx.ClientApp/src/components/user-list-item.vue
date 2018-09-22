@@ -1,6 +1,6 @@
 <template>
   <div class="user-list-item-wrapper">
-      <img class="user-photo" :src="user.photo"/>
+      <img class="user-photo" :src="'data:image/jpeg;base64,'+user.photo"/>
       <span class="user-name"> {{user.firstName}} {{user.lastName}} </span>
       <img class="delete-icon" :src="deleteIcon" @click.stop="removeUser(user)"/>
 
@@ -13,7 +13,7 @@
 
         <div class="user-tooltip">
           <div class="photo-and-name">
-            <img :src="user.photo"/>
+            <img :src="'data:image/jpeg;base64,'+user.photo" />"/>
             <span>{{user.username}}</span>
           </div>
           <div class="details">
@@ -39,7 +39,7 @@ export default {
       deleteIcon
     }
   },
-  methods:{
+  methods: {
     ...mapMutations(['removeUser'])
   }
 }
@@ -156,7 +156,7 @@ export default {
       color: #131b3c;
     }
     span{
-      margin-bottom:10px; 
+      margin-bottom:10px;
       color: #a5a8b5;
     }
   }

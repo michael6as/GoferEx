@@ -9,8 +9,9 @@ namespace GoferEx.ExternalResources.Abstract
     /// </summary>
     public interface IDataHandler
     {
-        Task<IEnumerable<Contact>> GetContacts(ResourceAuthToken token);
+        Task<SyncContactObject> GetContacts(ResourceAuthToken token);
+        Task<SyncContactObject> GetContact(ResourceAuthToken token, string id);
         Task<IEnumerable<Contact>> UpdateContacts(ResourceAuthToken token, IEnumerable<Contact> updatedContacts, bool changeInResource);
-        Task<IEnumerable<Contact>> DeleteContacts(ResourceAuthToken token, IEnumerable<Contact> updatedContacts, bool changeInResource);
+        Task<IEnumerable<Contact>> DeleteContact(ResourceAuthToken token, string contactId, bool changeInResource);
     }
 }

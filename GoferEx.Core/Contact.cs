@@ -10,19 +10,24 @@ namespace GoferEx.Core
         public string LastName { get; set; }
         public string Username { get; set; }
         public string EmailAddress { get; set; }
-        public DateTime BirthDate { get; set; }
+        public string BirthDate { get; set; }
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
 
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
 
         [JsonConstructor]
-        public Contact(string firstName, string lastName, string username, string email, DateTime birthDate, string phone, string password, byte[] photo = null, string id = null)
+        public Contact(string firstName, string lastName, string username, string email, string birthDate, string phone, string password, string photo = null, string id = null)
         {
             Id = string.IsNullOrEmpty(id) ? Guid.NewGuid().ToString() : id;
             FirstName = firstName;
             LastName = lastName;
             EmailAddress = email;
+            DateTime tempDate;
+            if (!DateTime.TryParse(birthDate, out tempDate))
+            {
+                throw new Exception("Birthday is invalid format");
+            }
             BirthDate = birthDate;
             PhoneNumber = phone;
             Password = password;

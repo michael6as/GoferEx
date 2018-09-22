@@ -8,6 +8,6 @@ namespace GoferEx.ExternalResources.Abstract
         IEnumerable<Contact> RetrieveContacts(ResourceAuthToken authParams);
 
         bool AddContacts(ResourceAuthToken authParams, IEnumerable<Contact> contacts);
-        bool DeleteContacts(ResourceAuthToken authParams, IEnumerable<Contact> contacts);
+        bool DeleteContact(ResourceAuthToken authParams, string contactId);
     }
 }

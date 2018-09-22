@@ -1,4 +1,5 @@
 ﻿using GoferEx.Core;
+using GoferEx.ExternalResources.Abstract;
 using Google.Contacts;
 using Google.GData.Client;
 using Google.GData.Contacts;
@@ -9,28 +10,25 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using GoferEx.ExternalResources.Abstract;
 using Contact = GoferEx.Core.Contact;
 
 namespace GoferEx.ExternalResources.Google
 {
     public class GoogleResourceHandler : IResourceHandler
     {
+        private readonly byte[] _defImg;
+        public GoogleResourceHandler(byte[] defaultImgArr)
+        {
+            _defImg = defaultImgArr;
+        }
+
         public IEnumerable<Contact> RetrieveContacts(ResourceAuthToken authParams)
         {
-            try
-            {
-                RequestSettings settings = new RequestSettings("ContactsManager", authParams.AuthToken);
-                ContactsRequest contactsProvider = new ContactsRequest(settings);
-                var googleContactResult = contactsProvider.GetContacts();
-                var contactsList = CastEntriesToContacts(googleContactResult.Entries, contactsProvider);
-                return contactsList;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            RequestSettings settings = new RequestSettings("ContactsManager", authParams.AuthToken);
+            ContactsRequest contactsProvider = new ContactsRequest(settings);
+            var googleContactResult = contactsProvider.GetContacts();
+            var contactsList = CastEntriesToContacts(googleContactResult.Entries, contactsProvider);
+            return contactsList;
         }
 
         public bool AddContacts(ResourceAuthToken authParams, IEnumerable<Contact> contacts)
@@ -46,6 +44,15 @@ namespace GoferEx.ExternalResources.Google
             }
             return true;
 
+        }
+
+        public bool DeleteContact(ResourceAuthToken authParams, string contactId)
+        {
+            RequestSettings settings = new RequestSettings("ContactsManager", authParams.AuthToken);
+            ContactsRequest cr = new ContactsRequest(settings);
+            var retrievedContact = cr.Retrieve<global::Google.Contacts.Contact>(new Uri(contactId));
+            cr.Delete(retrievedContact);
+            return true;
         }
 
         private void CreateContact(ContactsRequest cr, Contact contact)
@@ -101,54 +108,58 @@ namespace GoferEx.ExternalResources.Google
             return HttpStatusCode.OK;
         }
 
-        public bool DeleteContacts(ResourceAuthToken authParams, IEnumerable<Contact> contacts)
-        {
-            RequestSettings settings = new RequestSettings("ContactsManager", authParams.AuthToken);
-            ContactsRequest cr = new ContactsRequest(settings);
-            foreach (var contact in contacts)
-            {
-                var retrievedContact = cr.Retrieve<global::Google.Contacts.Contact>(new Uri(contact.Id));
-                cr.Delete(retrievedContact);
-            }
-
-            return true;
-        }
 
         private IEnumerable<Contact> CastEntriesToContacts(IEnumerable<global::Google.Contacts.Contact> feedContacts, ContactsRequest contactReq)
         {
-            IList<Core.Contact> parsedContacts = new List<Contact>();
-            foreach (var fContact in feedContacts)
-            {
-                if (!string.IsNullOrEmpty(fContact.Name.FullName))
-                {
-                    parsedContacts.Add(
-                        new Contact(
-                            fContact.Name.FullName,
-                            fContact.Name.FamilyName,
-                            fContact.Name.GivenName,
-                            fContact.PrimaryEmail.Address,
-                            fContact.Updated,
-                            fContact.Phonenumbers.First().Value, "", GetContactPhoto(fContact, contactReq)));
-                }
-            }
-            return parsedContacts;
+            return (from fContact in feedContacts
+                    where !string.IsNullOrEmpty(fContact.Name.FullName)
+                    select CastToGoferContact(fContact, contactReq)).ToList();
         }
 
-        private byte[] GetContactPhoto(global::Google.Contacts.Contact googleContact, ContactsRequest contactsApi)
+        private Contact CastToGoferContact(global::Google.Contacts.Contact gContact, ContactsRequest contactReq)
+        {
+            if (gContact.Id == null)
+            {
+                throw new Exception("No Id, Invalid Google contact");
+            }
+
+            var id = gContact.Id;
+            var firstName = gContact.Name.GivenName;
+            var lastName = gContact.Name.FamilyName ?? gContact.Name.GivenName;
+            var username = gContact.Name.FullName;
+            var email = gContact.Emails.FirstOrDefault() != null ? gContact.PrimaryEmail.Address : "";
+
+            var birthdate = gContact.Updated.ToString("dd/MM/yyyy");
+            var phone = gContact.Phonenumbers.FirstOrDefault() != null ? CreatePhoneNumber(gContact.Phonenumbers.FirstOrDefault()) : "";
+            var photo = GetContactPhoto(gContact.PhotoUri, contactReq);
+            return new Contact(firstName, lastName, username, email, birthdate, phone, "", photo, id);
+        }
+
+        private string CreatePhoneNumber(PhoneNumber phoneNumObj)
+        {
+            var noSpaceNumber = phoneNumObj.Value.Replace(" ", string.Empty).Replace("-", string.Empty);
+            return noSpaceNumber.Replace("+972", "05");
+        }
+
+        private string GetContactPhoto(Uri photoUri, ContactsRequest contactsApi)
         {
             try
             {
-                using (System.IO.Stream photoStream = contactsApi.GetPhoto(googleContact))
+                using (GDataReturnStream photoStream = (GDataReturnStream)contactsApi.Service.Query(photoUri))
                 {
-                    var photoInBytes = new byte[photoStream.Length];
-                    photoStream.Read(photoInBytes, 0, photoInBytes.Length);
-                    return photoInBytes;
+                    byte[] photoBuffer;
+                    using (var ms = new MemoryStream())
+                    {
+                        photoStream.CopyTo(ms);
+                        photoBuffer = ms.ToArray();
+                    }
+                    return Convert.ToBase64String(photoBuffer);
+
                 }
             }
             catch (Exception)
             {
-                // Should create deafult photo for unavailable pictures
-                return null;
+                return Convert.ToBase64String(_defImg);
             }
         }
     }

@@ -16,43 +16,55 @@ const myApi = axios.create({
   }
 })
 
-// TODO: Change here to basic GET
 const localStorage = window.localStorage
 
-// TODO: Change here to basic POST
 function updateStorage (users) {
   localStorage.setItem('users', JSON.stringify(users))
 }
 
-// TODO: Chnage based on line 10
-myApi.get('api/contact').then(res => {
-  if (res.data.length > 0) {
-    localStorage.setItem('users', res.data)
-  }
-}).catch(e => {
-  alert('Got error while fetching users from server ' + e.message)
-})
-
-var existUsers = []
-
-var initUsers = function () {
-  if (localStorage.getItem('users') !== null) {
-    existUsers = JSON.parse(localStorage.getItem('users'))
-  } else {
-    existUsers = defaultUsers
-  }
-}
-initUsers()
+// let getServerContacts = function () {
+//   myApi.get('api/contact').then(res => {
+//     if (res.data.retrievedContacts.length > 0 && res.data.serverError === null) {
+//       localStorage.setItem('users', JSON.parse(res.data.retrievedContacts))
+//     } else {
+//       console.log(res.data.serverError)
+//     }
+//   }).catch(e => {
+//     alert('Got error while fetching users from server ' + e.message)
+//   })
+// }
+// getServerContacts()
+//
+// let existUsers = []
+// let initUsers = function () {
+//   if (localStorage.getItem('users') !== null) {
+//     existUsers = JSON.parse(localStorage.getItem('users'))
+//   } else {
+//     existUsers = defaultUsers
+//   }
+// }
+// initUsers()
 
 export default new Vuex.Store({
   state: {
-    users: existUsers,
+    users: defaultUsers,
     toasts: [],
     currentUser: null,
     syncedTokens: [],
     authSchemes: []
   },
   mutations: {
+    getContacts (state) {
+      myApi.get('api/contact').then(res => {
+        if (res.data.retrievedContacts.length > 0 && res.data.serverError === null) {
+          state.users = res.data.retrievedContacts
+        } else {
+          console.log(res.data.serverError)
+        }
+      }).catch(e => {
+        alert('Got error while fetching users from server ' + e.message)
+      })
+    },
     addUser (state, user) {
       if (!user.id) {
         user.id = uuid()
@@ -88,7 +100,7 @@ export default new Vuex.Store({
     },
     removeUser (state, user) {
       console.log('Delete storage func')
-      let reqUrl = 'api/contact/' + user.id
+      let reqUrl = 'api/contact/?contactId=' + user.id
       myApi.delete(reqUrl).then(res => {
         state.users = res.data
       }).catch(e => {
@@ -111,9 +123,9 @@ export default new Vuex.Store({
     },
     selectUser (state, user) {
       console.log('Select storage func')
-      let reqUrl = 'api/contact/' + user.id
+      let reqUrl = 'api/contact/?contactId=' + user.id
       myApi.get(reqUrl).then(res => {
-        state.currentUser = res.data
+        state.currentUser = res.data.retrievedContacts[0]
       }).catch(e => {
         let toast = { id: uuid(), message: 'Error while getting server info for user ' + e.meesage, isPositive: false }
         state.toasts.push(toast)
@@ -141,7 +153,7 @@ export default new Vuex.Store({
         .then(res => {
           console.log(res.data)
         }).catch(e => {
-          console.log(e)
+          state.toasts.push('toast')
         })
     }
   }

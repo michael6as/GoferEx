@@ -1,13 +1,10 @@
 ﻿using GoferEx.Core;
-using GoferEx.ExternalResources;
+using GoferEx.ExternalResources.Abstract;
 using GoferEx.Server.Helpers.Interfaces;
-using GoferEx.Storage;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using GoferEx.ExternalResources.Abstract;
 
 namespace GoferEx.Server.Controllers
 {
@@ -29,58 +26,46 @@ namespace GoferEx.Server.Controllers
         [HttpGet()]
         public async Task<SyncContactObject> Get()
         {
-            try
-            {
-                var token = await _factory.CreateAuthToken(HttpContext);
-                return new SyncContactObject(token.ResourceProvider, await _handler.GetContacts(token));
-            }
-            catch (Exception e)
-            {
-                throw CreateClientMessage(e, "Error Occured while getting contacts from an external provider");
-            }
+            var token = await _factory.CreateAuthToken(HttpContext);
+            var query = Request.Query;
+
+            if (query.Count <= 0)
+                return await _handler.GetContacts(token);
+
+            var contactId = query["contactId"];
+            var contactRes = await _handler.GetContact(token, contactId);
+            return contactRes;
         }
 
         [HttpPost()]
-        public async Task<IEnumerable<Contact>> Post([FromBody]Contact[] contacts)
+        public async Task<SyncContactObject> Post([FromBody]Contact contact)
         {
             try
             {
                 var token = await _factory.CreateAuthToken(HttpContext);
-                await _handler.UpdateContacts(token, contacts.ToList(), false);
+                await _handler.UpdateContacts(token, new List<Contact>() { contact }, false);
                 return await _handler.GetContacts(token);
             }
             catch (Exception e)
             {
-                throw CreateClientMessage(e, "Error Occured while changing contacts");
+                return new SyncContactObject(new List<Contact>(), "", new ErrorMessage("Error occurred while authorizing the token", e));
             }
         }
 
         [HttpDelete()]
-        public async Task<IEnumerable<Contact>> Delete([FromBody]Contact contact)
+        public async Task<SyncContactObject> Delete()
         {
             try
             {
-                var token = await _factory.CreateAuthToken(HttpContext);
-                var contactList = new List<Contact>() { contact };
-                await _handler.DeleteContacts(token, contactList, false);
+                var contactId = Request.Query["contactId"];
+                var token = await _factory.CreateAuthToken(HttpContext);                
+                await _handler.DeleteContact(token, contactId, false);
                 return await _handler.GetContacts(token);
             }
             catch (Exception e)
             {
-                throw CreateClientMessage(e, "Error Occured while changing contacts");
+                return new SyncContactObject(new List<Contact>(), "", new ErrorMessage("Error occurred while authorizing the token", e));
             }
-        }        
-
-        /// <summary>
-        /// Create an error message to display for user.
-        /// The client should get an error obj instead of an exception
-        /// </summary>
-        /// <param name="e"></param>
-        /// <param name="userMsg"></param>
-        /// <returns></returns>
-        private Exception CreateClientMessage(Exception e, string userMsg)
-        {
-            return new Exception($"{userMsg} Exception Details: {e.Message}");
         }
     }
 }

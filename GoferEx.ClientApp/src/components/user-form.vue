@@ -65,7 +65,7 @@
 import logo from '@/assets/logo.png'
 import addIcon from '@/assets/add.svg'
 import addPhoto from '@/assets/add-photo.png'
-import {mapMutations,mapState} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 
 export default {
   props: ['user'],
@@ -73,16 +73,16 @@ export default {
     return {
       logo,
       addIcon,
-      id:null,
-      firstName:null,
-      lastName:null,
-      birthdate:null,
-      phone:null,
-      email:null,
-      username:null,
-      password:null,
-      confirmPassword:null,
-      photo:null
+      id: null,
+      firstName: null,
+      lastName: null,
+      birthdate: null,
+      phone: null,
+      email: null,
+      username: null,
+      password: null,
+      confirmPassword: null,
+      photo: null
     }
   },
   computed: {
@@ -92,67 +92,66 @@ export default {
       return addPhoto
     }
   },
-  watch:{
+  watch: {
     currentUser (currentUser) {
-        this.clear()
+      this.clear()
 
-        if(currentUser){
-            this.id = currentUser.id,
-            this.firstName = currentUser.firstName
-            this.lastName = currentUser.lastName
-            this.birthdate = currentUser.birthdate
-            this.phone = currentUser.phone
-            this.email = currentUser.email
-            this.username = currentUser.username
-            this.password = currentUser.password
-            this.confirmPassword = currentUser.password
-            this.photo = currentUser.photo
-        }
+      if (currentUser) {
+        this.id = currentUser.id,
+        this.firstName = currentUser.firstName
+        this.lastName = currentUser.lastName
+        this.birthdate = currentUser.birthdate
+        this.phone = currentUser.phone
+        this.email = currentUser.email
+        this.username = currentUser.username
+        this.password = currentUser.password
+        this.confirmPassword = currentUser.password
+        this.photo = currentUser.photo
+      }
     }
   },
-  methods:{
-      ...mapMutations(['addUser','selectUser']),
-      onSelectFile(e){
-        let reader = new FileReader();
-        reader.readAsDataURL(e.srcElement.files[0]);
-        reader.onload =  () => this.photo = reader.result
-        reader.onerror = (error) => console.log('Error: ', error)
-      },
-      async add (){
-        let validateRes = await this.$validator.validateAll()
-        if(validateRes){
-            let user = {
-                id:this.id,
-                firstName:this.firstName,
-                lastName:this.lastName,
-                birthdate:this.birthdate,
-                phone:this.phone,
-                email:this.email,
-                password:this.password,
-                username:this.username,
-                photo:this.photo
-            }
-
-            this.addUser(user)
-            if(!this.id)
-                this.clear()
+  methods: {
+    ...mapMutations(['addUser', 'selectUser']),
+    onSelectFile (e) {
+      let reader = new FileReader()
+      reader.readAsDataURL(e.srcElement.files[0])
+      reader.onload = () => this.photo = reader.result
+      reader.onerror = (error) => console.log('Error: ', error)
+    },
+    async add () {
+      let validateRes = await this.$validator.validateAll()
+      if (validateRes) {
+        let user = {
+          id: this.id,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          birthdate: this.birthdate,
+          phone: this.phone,
+          email: this.email,
+          password: this.password,
+          username: this.username,
+          photo: this.photo
         }
-      },
-      clear (){
-        this.id = null
-        this.firstName = null
-        this.lastName = null
-        this.birthdate = null
-        this.phone = null
-        this.email = null
-        this.username = null
-        this.password = null
-        this.confirmPassword = null
-        this.photo = null
-        setTimeout(() => {
-            this.errors.clear()    
-        });
+
+        this.addUser(user)
+        if (!this.id) { this.clear() }
       }
+    },
+    clear () {
+      this.id = null
+      this.firstName = null
+      this.lastName = null
+      this.birthdate = null
+      this.phone = null
+      this.email = null
+      this.username = null
+      this.password = null
+      this.confirmPassword = null
+      this.photo = null
+      setTimeout(() => {
+        this.errors.clear()
+      })
+    }
   }
 }
 </script>

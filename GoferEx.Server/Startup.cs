@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
+using System.IO;
 using GoferEx.ExternalResources.Abstract;
 using GoferEx.Server.Helpers.TokenFactory;
 
@@ -33,7 +34,6 @@ namespace GoferEx.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //TODO 1: Create Interface for adding Authentications
             var serviceAuthBuilder = services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o => o.LoginPath = new PathString("/login"));
             foreach (var authProvider in AuthProviders)
@@ -53,7 +53,8 @@ namespace GoferEx.Server
 
             // Initialize all classes instances for the BL and DAL
             IDbProvider dbProvider = new RedisDbProvider(Configuration["DbConnection:Connection"]);
-            IDictionary<string, IResourceHandler> resourceHandlers = new Dictionary<string, IResourceHandler>() { { "Google", new GoogleResourceHandler() } };
+            var defaultImage = File.ReadAllBytes(Configuration["DefaultSettings:DefaultImage"]);
+            IDictionary<string, IResourceHandler> resourceHandlers = new Dictionary<string, IResourceHandler>() { { "Google", new GoogleResourceHandler(defaultImage) } };
             services.AddSingleton<IDataHandler>(new BasicDataHandler(resourceHandlers, dbProvider));
             services.AddSingleton<IAuthTokenFactory>(new SingleAuthTokenFactory());
 
