@@ -8,10 +8,8 @@ namespace GoferEx.Storage
 {
     public interface IDbProvider
     {
-        Task<IEnumerable<Contact>> GetContacts();
-        Task<Contact> GetContact(Guid id);
-        Task<bool> RemoveContact(Guid id);
-        Task<bool> AddContacts(List<Contact> contacts);        
-        Task<bool> UpdateContacts(List<Contact> contacts);
+        Task<IList<Contact>> GetContacts(string id);
+        Task<bool> RemoveContact(string id, Contact contact);       
+        Task<bool> UpdateContacts(string id, List<Contact> contacts);
     }
 }

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoferEx", "GoferEx\GoferEx.csproj", "{A28F4A7B-96FD-4C49-8823-3A614A7432BD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoferEx.Storage", "GoferEx.Storage\GoferEx.Storage.csproj", "{A2898327-933A-4F81-931D-69FAEE2CF8F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoferEx.Core", "GoferEx.Core\GoferEx.Core.csproj", "{81BB58DB-69F7-4711-AFD3-C582F85B014D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoferEx.ExternalResources", "GoferEx.ExternalResources\GoferEx.ExternalResources.csproj", "{E4A00B08-DB2D-4318-9516-6D1BBFC6CB68}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoferEx.Server", "GoferEx.Server\GoferEx.Server.csproj", "{9C0E9608-0AE2-408C-939C-5EB3FCC629B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GoferEx.ClientApp", "GoferEx.ClientApp", "{1B349FC2-902B-407B-85BD-06BB484AD7AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A28F4A7B-96FD-4C49-8823-3A614A7432BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A28F4A7B-96FD-4C49-8823-3A614A7432BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A28F4A7B-96FD-4C49-8823-3A614A7432BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A28F4A7B-96FD-4C49-8823-3A614A7432BD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2898327-933A-4F81-931D-69FAEE2CF8F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2898327-933A-4F81-931D-69FAEE2CF8F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2898327-933A-4F81-931D-69FAEE2CF8F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +31,10 @@ Global
 		{E4A00B08-DB2D-4318-9516-6D1BBFC6CB68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4A00B08-DB2D-4318-9516-6D1BBFC6CB68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4A00B08-DB2D-4318-9516-6D1BBFC6CB68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C0E9608-0AE2-408C-939C-5EB3FCC629B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C0E9608-0AE2-408C-939C-5EB3FCC629B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C0E9608-0AE2-408C-939C-5EB3FCC629B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C0E9608-0AE2-408C-939C-5EB3FCC629B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

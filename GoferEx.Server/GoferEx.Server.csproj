@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>41f72084-50b7-4d2b-b2cc-74dfbe5dbabb</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GoferEx.Core\GoferEx.Core.csproj" />
+    <ProjectReference Include="..\GoferEx.ExternalResources\GoferEx.ExternalResources.csproj" />
+    <ProjectReference Include="..\GoferEx.Storage\GoferEx.Storage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Google.GData.Client">
+      <HintPath>..\..\..\..\..\.nuget\packages\google.gdata.client\2.2.0\lib\Google.GData.Client.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

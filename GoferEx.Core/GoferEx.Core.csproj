@@ -8,4 +8,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Google.GData.Client">
+      <HintPath>..\..\..\..\..\.nuget\packages\google.gdata.client\2.2.0\lib\Google.GData.Client.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

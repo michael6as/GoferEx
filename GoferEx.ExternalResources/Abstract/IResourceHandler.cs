@@ -1,12 +1,13 @@
-﻿using GoferEx.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using GoferEx.Core;
 
-namespace GoferEx.ExternalResources
+namespace GoferEx.ExternalResources.Abstract
 {
-    public interface IResourceHandler<in T> where T : BaseToken
+    public interface IResourceHandler
     {
-        void Authenticate(string[] scopes);
-        bool ValidateToken(T token);
-        IEnumerable<Contact> RetrieveContacts(T token);
+        IEnumerable<Contact> RetrieveContacts(ResourceAuthToken authParams);
+
+        bool AddContacts(ResourceAuthToken authParams, IEnumerable<Contact> contacts);
+        bool DeleteContact(ResourceAuthToken authParams, string contactId);
     }
 }
