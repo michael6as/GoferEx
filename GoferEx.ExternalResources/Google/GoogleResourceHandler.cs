@@ -123,6 +123,7 @@ namespace GoferEx.ExternalResources.Google
                 throw new Exception("No Id, Invalid Google contact");
             }
 
+            // This is the unique id given by Google. URL format
             var id = gContact.Id;
             var firstName = gContact.Name.GivenName;
             var lastName = gContact.Name.FamilyName ?? gContact.Name.GivenName;

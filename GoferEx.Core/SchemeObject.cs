@@ -4,6 +4,9 @@ using System.Text;
 
 namespace GoferEx.Core
 {
+    /// <summary>
+    /// Object that holds the login information for an existing authentication middleware
+    /// </summary>
     public class SchemeObject
     {
         public string ProviderName { get; set; }

@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using System;
 
 namespace GoferEx.Core
-{
+{    
     public class Contact
     {
         public string Id { get; set; }
@@ -19,6 +19,7 @@ namespace GoferEx.Core
         [JsonConstructor]
         public Contact(string firstName, string lastName, string username, string email, string birthDate, string phone, string password, string photo = null, string id = null)
         {
+            // In case we adding contacts locally, we will create Guid
             Id = string.IsNullOrEmpty(id) ? Guid.NewGuid().ToString() : id;
             FirstName = firstName;
             LastName = lastName;

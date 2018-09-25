@@ -2,6 +2,9 @@
 
 namespace GoferEx.Core
 {
+    /// <summary>
+    /// This is a wrapping for an error occured at the server
+    /// </summary>
     public class ErrorMessage
     {
         public string UserMessage { get; }

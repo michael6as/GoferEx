@@ -704,6 +704,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "Google.GData.Client": "2.2.0",
           "Newtonsoft.Json": "11.0.2"
         },
         "compile": {
@@ -2478,11 +2479,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.ExternalResources\\GoferEx.ExternalResources.csproj",
+      "projectUniqueName": "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.ExternalResources\\GoferEx.ExternalResources.csproj",
       "projectName": "GoferEx.ExternalResources",
-      "projectPath": "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.ExternalResources\\GoferEx.ExternalResources.csproj",
+      "projectPath": "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.ExternalResources\\GoferEx.ExternalResources.csproj",
       "packagesPath": "C:\\Users\\Michael\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.ExternalResources\\obj\\",
+      "outputPath": "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.ExternalResources\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -2502,11 +2503,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.Core\\GoferEx.Core.csproj": {
-              "projectPath": "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.Core\\GoferEx.Core.csproj"
+            "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.Core\\GoferEx.Core.csproj": {
+              "projectPath": "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.Core\\GoferEx.Core.csproj"
             },
-            "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.Storage\\GoferEx.Storage.csproj": {
-              "projectPath": "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.Storage\\GoferEx.Storage.csproj"
+            "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.Storage\\GoferEx.Storage.csproj": {
+              "projectPath": "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.Storage\\GoferEx.Storage.csproj"
             }
           }
         }

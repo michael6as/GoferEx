@@ -20,6 +20,9 @@ using Newtonsoft.Json.Linq;
 
 namespace GoferEx.Server.Helpers
 {
+    /// <summary>
+    /// This is an extension class for the ASP.NET Authentication middleware    
+    /// </summary>
     public static class StartupAuthExtensions
     {
         public static void AddLoginRoute(this IApplicationBuilder app, IConfiguration config)

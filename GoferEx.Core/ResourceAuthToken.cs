@@ -2,6 +2,9 @@
 
 namespace GoferEx.Core
 {
+    /// <summary>
+    /// Token created from the cookies in an authorized request
+    /// </summary>
     public class ResourceAuthToken
     {
         public string Id { get; set; }

@@ -16,6 +16,18 @@
           "lib/netstandard2.0/Dapper.dll": {}
         }
       },
+      "Google.GData.Client/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "4.0.5"
+        },
+        "compile": {
+          "lib/Google.GData.Client.dll": {}
+        },
+        "runtime": {
+          "lib/Google.GData.Client.dll": {}
+        }
+      },
       "Microsoft.NETCore.App/2.1.0": {
         "type": "package",
         "dependencies": {
@@ -600,6 +612,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "Google.GData.Client": "2.2.0",
           "Newtonsoft.Json": "11.0.2"
         },
         "compile": {
@@ -625,6 +638,16 @@
         "lib/netstandard1.3/Dapper.xml",
         "lib/netstandard2.0/Dapper.dll",
         "lib/netstandard2.0/Dapper.xml"
+      ]
+    },
+    "Google.GData.Client/2.2.0": {
+      "sha512": "fEzWX+zWCJLj2pHcaY22hz4bbhCYzk01OodW2lqovh8jA2KsMaZ+SvZJqjl2sZo83us8DAFYlnopIR6qfkBbrQ==",
+      "type": "package",
+      "path": "google.gdata.client/2.2.0",
+      "files": [
+        "google.gdata.client.2.2.0.nupkg.sha512",
+        "google.gdata.client.nuspec",
+        "lib/Google.GData.Client.dll"
       ]
     },
     "Microsoft.NETCore.App/2.1.0": {
@@ -2224,11 +2247,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.Storage\\GoferEx.Storage.csproj",
+      "projectUniqueName": "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.Storage\\GoferEx.Storage.csproj",
       "projectName": "GoferEx.Storage",
-      "projectPath": "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.Storage\\GoferEx.Storage.csproj",
+      "projectPath": "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.Storage\\GoferEx.Storage.csproj",
       "packagesPath": "C:\\Users\\Michael\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.Storage\\obj\\",
+      "outputPath": "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.Storage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -2248,8 +2271,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.Core\\GoferEx.Core.csproj": {
-              "projectPath": "C:\\Users\\Michael\\source\\repos\\Gofer\\GoferEx\\GoferEx.Core\\GoferEx.Core.csproj"
+            "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.Core\\GoferEx.Core.csproj": {
+              "projectPath": "G:\\repoCheck\\gofer\\GoferEx\\GoferEx.Core\\GoferEx.Core.csproj"
             }
           }
         }
@@ -2289,5 +2312,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Google.GData.Client 2.2.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Google.GData.Client",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    }
+  ]
 }

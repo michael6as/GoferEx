@@ -2,6 +2,9 @@
 
 namespace GoferEx.Core
 {
+    /// <summary>
+    /// Model for representing the retrieved information from the external resources and DB
+    /// </summary>
     public class SyncContactObject
     {
         public string Provider { get; }

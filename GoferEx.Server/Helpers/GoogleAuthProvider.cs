@@ -37,16 +37,7 @@ namespace GoferEx.Server.Helpers
                 };
                 o.ClaimActions.MapJsonSubKey("urn:google:image", "image", "url");
                 o.ClaimActions.Remove(ClaimTypes.GivenName);
-                o.AddScopes(_config);
-                //o.Scope.Add("https://www.googleapis.com/auth/userinfo.profile");
-                //o.Scope.Add("https://www.googleapis.com/auth/userinfo.email");
-                //o.Scope.Add("https://www.googleapis.com/auth/user.phonenumbers.read");
-                //o.Scope.Add("https://www.googleapis.com/auth/user.emails.read");
-                //o.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
-                //o.Scope.Add("https://www.googleapis.com/auth/user.addresses.read");
-                //o.Scope.Add("https://www.googleapis.com/auth/plus.login");
-                //o.Scope.Add("https://www.googleapis.com/auth/contacts.readonly");
-                //o.Scope.Add("https://www.googleapis.com/auth/contacts");
+                o.AddScopes(_config);                
             });
         }
 
